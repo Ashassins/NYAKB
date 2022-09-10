@@ -43,6 +43,11 @@ I2C_HandleTypeDef hi2c3;
 
 PCD_HandleTypeDef hpcd_USB_OTG_HS;
 
+// String to send to STM32F0
+uint8_t aTxBuffer[] = "test";
+
+int txBuffSize = sizeof(aTxBuffer) / sizeof(uint8_t) - 1;
+
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -58,7 +63,52 @@ static void MX_USB_OTG_HS_PCD_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+static void Button0_Init() {
+	GPIO_InitTypeDef GPIO_InitStruct;
 
+	// Button 0 is connected to GPIO PA0
+	// Enable RCC Clock to GPIOA
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+
+	/* Configure Button pin as input with External interrupt */
+	GPIO_InitStruct.Pin = BUTTON0_PIN;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
+	GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+	HAL_GPIO_Init(BUTTON0_PORT, &GPIO_InitStruct);
+
+	/* Enable and set Button EXTI Interrupt to the lowest priority */
+	HAL_NVIC_SetPriority((IRQn_Type)(EXTI0_IRQn), 0x0F, 0);
+	HAL_NVIC_EnableIRQ((IRQn_Type)(EXTI0_IRQn));
+}
+void LED4_Init()
+{
+  GPIO_InitTypeDef  GPIO_InitStruct;
+
+  /* Enable RCC Clock to GPIOD Port */
+  __HAL_RCC_GPIOD_CLK_ENABLE();
+
+  /* Configure the GPIO_LED pin */
+  GPIO_InitStruct.Pin = GPIO_PIN_12; // Pin for LED 4
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
+
+  // Pin 12 is on Port GPIOD
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
+}
+
+void LED4_Off()
+{
+  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
+}
+
+void LED4_Toggle()
+{
+  HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_12);
+}
 /* USER CODE END 0 */
 
 /**
@@ -90,9 +140,12 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C3_Init();
-  MX_USB_OTG_HS_PCD_Init();
+  //  Currently Commented out because USB is not setup and causes hang
+  //  MX_USB_OTG_HS_PCD_Init();
+  LED4_Init();
+  Button0_Init();
   /* USER CODE BEGIN 2 */
-
+  LED4_Off();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -238,7 +291,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  if(GPIO_Pin == BUTTON0_PIN)
+  {
+	  LED4_Toggle();
+  }
+}
 /* USER CODE END 4 */
 
 /**

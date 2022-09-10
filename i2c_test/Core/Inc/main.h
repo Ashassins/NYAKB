@@ -31,7 +31,8 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#define BUTTON0_PIN		GPIO_PIN_0
+#define BUTTON0_PORT	GPIOA
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
