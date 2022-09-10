@@ -65,3 +65,12 @@ ctrlp.root
 
 #html
 *.html
+
+# LLVM Compile commands db
+compile_commands.json
+
+# IDE Generated folders
+Debug/
+Release/
+.cache/
+.settings/
