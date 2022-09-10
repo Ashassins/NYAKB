@@ -31,8 +31,11 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#define BUTTON0_PIN		GPIO_PIN_0
-#define BUTTON0_PORT	GPIOA
+#define BUTTON0_PIN			GPIO_PIN_0
+#define BUTTON0_PORT		GPIOA
+#define I2C_ADDRESS         0x5A
+#define MASTER_REQ_READ    0x12
+#define MASTER_REQ_WRITE   0x34
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

@@ -63,6 +63,32 @@ static void MX_USB_OTG_HS_PCD_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+static void I2C_send_packet(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint8_t *pData, uint16_t Size) {
+	do
+	{
+	  if(HAL_I2C_Master_Transmit_IT(hi2c, DevAddress, pData, Size)!= HAL_OK)
+	  {
+		/* Error_Handler() function is called in case of error. */
+		Error_Handler();
+	  }
+
+	  /* Before starting a new communication transfer, you need to check the current
+	  state of the peripheral; if it�s busy you need to wait for the end of current
+	  transfer before starting a new one.
+	  For simplicity reasons, this example is just waiting till the end of the
+	  transfer, but application may perform other tasks while transfer operation
+	  is ongoing. */
+	  while (HAL_I2C_GetState(hi2c) != HAL_I2C_STATE_READY)
+	  {
+	  }
+
+	  /* When Acknowledge failure occurs (Slave don't acknowledge its address)
+	  Master restarts communication */
+	} while(HAL_I2C_GetError(hi2c) == HAL_I2C_ERROR_AF);
+}
+static void I2C_send_test() {
+	I2C_send_packet(&hi2c3, I2C_ADDRESS, aTxBuffer, txBuffSize);
+}
 static void Button0_Init() {
 	GPIO_InitTypeDef GPIO_InitStruct;
 
@@ -296,6 +322,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   if(GPIO_Pin == BUTTON0_PIN)
   {
 	  LED4_Toggle();
+	  I2C_send_test();
   }
 }
 /* USER CODE END 4 */
