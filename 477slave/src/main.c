@@ -39,7 +39,7 @@ void slave_mode(void){
     I2C1->CR2 |= I2C_CR2_AUTOEND; // Enable the auto end
     I2C1->CR2 |= I2C_CR2_NACK; // for slave mode: set NACK
 
-    I2C1->CR1 = I2C_CR1_PE; // Enables peripheral
+    I2C1->CR1 |= I2C_CR1_PE; // Enables peripheral
 }
 
 void transmitter(I2C_BYTE_TO_SEND) {
