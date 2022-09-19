@@ -33,7 +33,7 @@ void slave_mode(void){
 
     // I2c "Own Address" 1 register
     I2C1->OAR1 &= ~I2C_OAR1_OA1EN; // Disable own address 1
-    I2C1->OAR1 = I2C_OAR1_OA1EN | 0x5A; // Set 7-bit own address 1 address is 0x5A
+    I2C1->OAR1 = I2C_OAR1_OA1EN | 0x2; // Set 7-bit own address 1 address 
     I2C1->OAR2 &= ~I2C_OAR2_OA2EN; // Disable own address 2
     I2C1->CR2 &= ~I2C_CR2_ADD10; // 0 = 7 bit mode 1 = 10 bit mode
     I2C1->CR2 |= I2C_CR2_AUTOEND; // Enable the auto end
