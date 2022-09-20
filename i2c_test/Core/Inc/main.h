@@ -57,6 +57,8 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+void LED5_Off();
+void LED5_On();
 
 /* USER CODE END EFP */
 
