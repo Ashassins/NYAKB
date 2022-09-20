@@ -81,3 +81,4 @@ Release/
 RemoteSystemsTempFiles/
 .gdb_history
 .project
+*.cfg
