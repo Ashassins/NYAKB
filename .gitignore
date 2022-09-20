@@ -74,3 +74,10 @@ Debug/
 Release/
 .cache/
 .settings/
+.cproject
+.mxproject
+*.launch
+.metadata
+RemoteSystemsTempFiles/
+.gdb_history
+.project
