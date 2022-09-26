@@ -1,0 +1,6 @@
+(fp_lib_table
+  (lib (name "Library")(type "KiCad")(uri "${KIPRJMOD}/Library.pretty")(options "")(descr ""))
+  (lib (name "main-keyboard")(type "KiCad")(uri "${KIPRJMOD}/footprints/main-keyboard.pretty")(options "")(descr ""))
+  (lib (name "main-keyboard-pcb")(type "KiCad")(uri "${KIPRJMOD}/footprints/main-keyboard-pcb.pretty")(options "")(descr ""))
+  (lib (name "buck-converter")(type "KiCad")(uri "${KIPRJMOD}/buck-converter.pretty")(options "")(descr ""))
+)
