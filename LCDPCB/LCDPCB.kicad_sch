@@ -2551,7 +2551,7 @@
     (property "Value" "5.1K" (id 1) (at 60.96 49.5299 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (id 2) (at 56.642 48.26 90)
+    (property "Footprint" "lib_file:5.1kR" (id 2) (at 56.642 48.26 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 58.42 48.26 0)
@@ -2999,7 +2999,7 @@
       (reference "R3") (unit 1) (value "1K") (footprint "lib_file:1kR")
     )
     (path "/8efa2d6b-ac93-463d-8fc3-82bea1d9a16b"
-      (reference "R4") (unit 1) (value "5.1K") (footprint "Resistor_SMD:R_0402_1005Metric")
+      (reference "R4") (unit 1) (value "5.1K") (footprint "lib_file:5.1kR")
     )
     (path "/763fa959-745c-4cb0-8869-5f2c5ac68c34"
       (reference "SW1") (unit 1) (value "SW_Push") (footprint "Button_Switch_THT:SW_PUSH-12mm")
