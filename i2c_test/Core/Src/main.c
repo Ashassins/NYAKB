@@ -18,11 +18,9 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "stm32f4xx_hal_rcc.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -32,6 +30,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define SCREEN_PERIPH_ADDR (0x5a << 1)
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -41,6 +40,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c3;
+
+TIM_HandleTypeDef htim7;
 
 PCD_HandleTypeDef hpcd_USB_OTG_HS;
 
@@ -53,6 +54,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C3_Init(void);
 static void MX_USB_OTG_HS_PCD_Init(void);
+static void MX_TIM7_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -82,7 +84,8 @@ static void I2C_send_packet(I2C_HandleTypeDef *hi2c, uint16_t DevAddress,
 static void I2C_send_test() {
   /* I2C_send_packet(&hi2c3, I2C_ADDRESS, aTxBuffer, txBuffSize); */
   uint8_t data = 0x42;
-  HAL_StatusTypeDef rv = HAL_I2C_Master_Transmit(&hi2c3, 0x5a << 1, &data, 1, HAL_MAX_DELAY);
+  HAL_StatusTypeDef rv = HAL_I2C_Master_Transmit(&hi2c3, SCREEN_PERIPH_ADDR,
+                                                 &data, 1, HAL_MAX_DELAY);
 }
 static void Button0_Init() {
   GPIO_InitTypeDef GPIO_InitStruct;
@@ -102,36 +105,22 @@ static void Button0_Init() {
   HAL_NVIC_SetPriority((IRQn_Type)(EXTI0_IRQn), 0x0F, 0);
   HAL_NVIC_EnableIRQ((IRQn_Type)(EXTI0_IRQn));
 }
-void LED4_Init() {
-  GPIO_InitTypeDef GPIO_InitStruct;
 
-  /* Enable RCC Clock to GPIOD Port */
+void UserLedInit(void) {
+  GPIO_InitTypeDef initStruct;
   __HAL_RCC_GPIOD_CLK_ENABLE();
-
-  /* Configure the GPIO_LED pin */
-  GPIO_InitStruct.Pin = GPIO_PIN_12; // Pin for LED 4
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
-
-  // Pin 12 is on Port GPIOD
-  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-
-  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
-}
-
-void LED5_Init() {
-	GPIO_InitTypeDef initStruct;
   __HAL_RCC_GPIOD_CLK_ENABLE();
-
-  initStruct.Pin =GPIO_PIN_14;
+  initStruct.Pin = GPIO_PIN_12; // Pin for LED 4
   initStruct.Mode = GPIO_MODE_OUTPUT_PP;
   initStruct.Pull = GPIO_PULLUP;
   initStruct.Speed = GPIO_SPEED_FAST;
-
-  // Pin 12 is on Port GPIOD
+  // LED 4 is Pin 12 on GPIOD
+  HAL_GPIO_Init(GPIOD, &initStruct);
+  // LED 5 is Pin 14 on GPIOD
+  initStruct.Pin = GPIO_PIN_14; // Pin for LED 5
   HAL_GPIO_Init(GPIOD, &initStruct);
 
+  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
 }
 
@@ -176,13 +165,12 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C3_Init();
   /* MX_USB_OTG_HS_PCD_Init(); */
+  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  LED4_Init();
-  LED5_Init();
+  UserLedInit();
   LED4_Off();
   Button0_Init();
+  HAL_TIM_Base_Start_IT(&htim7);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -276,6 +264,44 @@ static void MX_I2C3_Init(void)
 }
 
 /**
+  * @brief TIM7 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM7_Init(void)
+{
+
+  /* USER CODE BEGIN TIM7_Init 0 */
+
+  /* USER CODE END TIM7_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM7_Init 1 */
+
+  /* USER CODE END TIM7_Init 1 */
+  htim7.Instance = TIM7;
+  htim7.Init.Prescaler = 41999;
+  htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim7.Init.Period = 199;
+  htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim7) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim7, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM7_Init 2 */
+
+  /* USER CODE END TIM7_Init 2 */
+
+}
+
+/**
   * @brief USB_OTG_HS Initialization Function
   * @param None
   * @retval None
@@ -329,8 +355,19 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
   if (GPIO_Pin == BUTTON0_PIN) {
-    LED4_Toggle();
+    /* LED4_Toggle(); */
     I2C_send_test();
+  }
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+  if (htim == &htim7) {
+    uint8_t rcv_data;
+    HAL_I2C_Master_Receive(&hi2c3, SCREEN_PERIPH_ADDR, &rcv_data, 1,
+                           HAL_MAX_DELAY);
+    if (rcv_data == 1) {
+      LED4_Toggle();
+    }
   }
 }
 /* USER CODE END 4 */

@@ -11,6 +11,9 @@
 #include "stm32f0xx.h"
 #include <stdint.h>
 
+char haz_press = 0;
+
+
 void initI2CPeripheral(void) {
   RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
   GPIOB->MODER &= ~((3 << (2 * 6)) | (3 << (2 * 7)));
@@ -39,6 +42,19 @@ void initLED(void) {
   GPIOC->MODER |= (1 << (2 * 6));
 }
 
+void initEXTI(void) {
+  RCC->APB2ENR |= RCC_APB2ENR_SYSCFGCOMPEN;
+  RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+  // Associate PA0 with exti 0
+  SYSCFG->EXTICR[0] &= ~(15);
+  GPIOA->MODER &= ~(3);
+  GPIOA->PUPDR |= 2;
+  EXTI->RTSR |= 1;
+  EXTI->IMR |= 1;
+  NVIC_EnableIRQ(EXTI0_1_IRQn);
+  NVIC_SetPriority(EXTI0_1_IRQn, 3);
+}
+
 void toggleLED(void) {
   if (GPIOC->ODR & (1 << 6)) {
     GPIOC->ODR &= ~(1 << 6);
@@ -51,6 +67,9 @@ void I2C1_IRQHandler(void) {
   uint32_t isr_stat = I2C1->ISR;
   if (isr_stat & I2C_ISR_ADDR) {
     I2C1->ICR |= I2C_ICR_ADDRCF;
+    if ((isr_stat & I2C_ISR_DIR) == I2C_ISR_DIR) {
+      I2C1->CR1 |= I2C_CR1_TXIE;
+    }
   }
   if ((isr_stat & I2C_ISR_RXNE) == I2C_ISR_RXNE) {
     I2C1->ICR |= I2C_ICR_ADDRCF;
@@ -58,12 +77,22 @@ void I2C1_IRQHandler(void) {
     if (data == 0x42) {
       toggleLED();
     }
+  } else if ((isr_stat & I2C_ISR_TXIS) == I2C_ISR_TXIS){
+    I2C1->CR1 &= ~I2C_CR1_TXIE;
+    I2C1->TXDR = haz_press;
+    haz_press = 0;
   }
+}
+
+void EXTI0_1_IRQHandler() {
+  haz_press = 1;
+  EXTI->PR= 1;
 }
 
 int main(void) {
   initI2CPeripheral();
   initLED();
+  initEXTI();
   toggleLED();
 
   for (;;) {
