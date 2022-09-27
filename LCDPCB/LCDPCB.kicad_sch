@@ -2789,7 +2789,7 @@
     (uuid eb4cb8d8-0281-4c02-b2b5-842a27215625)
     (property "Reference" "D3" (id 0) (at 44.7675 38.1 0))
     (property "Value" "BAT60A" (id 1) (at 44.7675 40.64 0))
-    (property "Footprint" "lib_file:BAT60B" (id 2) (at 44.45 40.005 0)
+    (property "Footprint" "lib_file:BAT60JFILM" (id 2) (at 44.45 40.005 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://www.infineon.com/dgdl/Infineon-BAT60ASERIES-DS-v01_01-en.pdf?fileId=db3a304313d846880113def70c9304a9" (id 3) (at 44.45 44.45 0)
@@ -2857,7 +2857,7 @@
     (uuid f3eeaca9-01b9-45ab-a60b-99a2befb5b1d)
     (property "Reference" "D2" (id 0) (at 73.9775 68.58 0))
     (property "Value" "BAT60A" (id 1) (at 73.9775 71.12 0))
-    (property "Footprint" "lib_file:BAT60B" (id 2) (at 73.66 70.485 0)
+    (property "Footprint" "lib_file:BAT60JFILM" (id 2) (at 73.66 70.485 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://www.infineon.com/dgdl/Infineon-BAT60ASERIES-DS-v01_01-en.pdf?fileId=db3a304313d846880113def70c9304a9" (id 3) (at 73.66 74.93 0)
@@ -2972,10 +2972,10 @@
       (reference "C10") (unit 1) (value ".1uF") (footprint "lib_file:.1uFC")
     )
     (path "/f3eeaca9-01b9-45ab-a60b-99a2befb5b1d"
-      (reference "D2") (unit 1) (value "BAT60A") (footprint "lib_file:BAT60B")
+      (reference "D2") (unit 1) (value "BAT60A") (footprint "lib_file:BAT60JFILM")
     )
     (path "/eb4cb8d8-0281-4c02-b2b5-842a27215625"
-      (reference "D3") (unit 1) (value "BAT60A") (footprint "lib_file:BAT60B")
+      (reference "D3") (unit 1) (value "BAT60A") (footprint "lib_file:BAT60JFILM")
     )
     (path "/bf39286c-c998-45e7-99b6-5106f72f3fcc"
       (reference "FB1") (unit 1) (value "FerriteBead") (footprint "lib_file:Ferrite")

@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'BAT60JFILM'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "ARROW_PART_NUMBER", "ARROW_PRICE/STOCK", "MOUSER_TESTING_PART_NUMBER", "MOUSER_TESTING_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "STMicroelectronics", "BAT60JFILM" (!) = "", "SOD2513X117N", "Small Outline Diode", "511-BAT60JFILM", "https://www.mouser.co.uk/ProductDetail/STMicroelectronics/BAT60JFILM?qs=GnFZssByvVVVnMaukcyLZg%3D%3D", "BAT60JFILM", "https://www.arrow.com/en/products/bat60jfilm/stmicroelectronics?region=nac", "", "", "SMALL SIGNAL SCHOTTKY DIODE", "https://www.mouser.jp/datasheet/2/389/cd00001944-1795661.pdf", "1.17 mm"
+END_PART
+
+END.

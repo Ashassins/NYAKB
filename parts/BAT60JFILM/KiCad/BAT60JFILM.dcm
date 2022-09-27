@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP BAT60JFILM
+D SMALL SIGNAL SCHOTTKY DIODE
+K
+F https://www.mouser.jp/datasheet/2/389/cd00001944-1795661.pdf
+$ENDCMP
+#
+#End Doc Library

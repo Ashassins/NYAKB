@@ -1,0 +1,9 @@
+Manufacturer=STMicroelectronics
+PartNumber=BAT60JFILM
+PartCategory=Schottky Diode
+PackageCategory=Small Outline Diode
+PinCount=2
+Version=1.1
+Released=2020-09-16 06:19:16
+Downloaded=2022-09-27 16:52:07
+3D=Y

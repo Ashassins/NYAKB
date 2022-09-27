@@ -1,0 +1,129 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "BAT60JFILM"
+   (description "SMALL SIGNAL SCHOTTKY DIODE")
+   (family "DIO")
+   (package "SOD2513X117N")
+   (attribute "Datasheet Link" "https://www.mouser.jp/datasheet/2/389/cd00001944-1795661.pdf")
+   (attribute "Geometry.Height" "1.17mm")
+   (attribute "Manufacturer_Name" "STMicroelectronics")
+   (attribute "Manufacturer_Part_Number" "BAT60JFILM")
+   (attribute "Mouser Part Number" "511-BAT60JFILM")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/STMicroelectronics/BAT60JFILM?qs=GnFZssByvVVVnMaukcyLZg%3D%3D")
+   (attribute "Arrow Part Number" "BAT60JFILM")
+   (attribute "Arrow Price/Stock" "https://www.arrow.com/en/products/bat60jfilm/stmicroelectronics?region=nac")
+   (attribute "Mouser Testing Part Number" "")
+   (attribute "Mouser Testing Price/Stock" "")
+   (gate
+    (symbol "BAT60JFILM")
+    (pin "K" 1 PS)
+    (pin "A" 2 PS)
+   )
+  )
+  (symbol "BAT60JFILM"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 300 100) (pt 300 -100))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 300 100) (pt 340 100) (pt 340 60))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 300 -100) (pt 260 -100) (pt 260 -60))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 200 0) (pt 300 0))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 500 0) (pt 600 0))
+   )
+   (graphic
+    (stroke 10)
+    (path (closed true) (pt 300 0) (pt 500 100) (pt 500 -100) (pt 300 0))
+   )
+   (terminal
+    (body (symbol "PINSHORT") (pt 100 0) (rot 0) (mir 0) (visible true))
+    (name (pt 140 10) (rot 0) (just MIDDLE LEFT) (visible false))
+    (number (pt 60 10) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PINSHORT") (pt 700 0) (rot 0) (mir X) (visible true))
+    (name (pt 140 10) (rot 0) (just MIDDLE LEFT) (visible false))
+    (number (pt 60 10) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "SOD2513X117N"
+   (units MM)
+   (layer OCCA
+    (graphic
+     (stroke 0.05)
+     (path
+      (closed true)
+      (pt -1.975 1.15)
+      (pt 1.975 1.15)
+      (pt 1.975 -1.15)
+      (pt -1.975 -1.15)
+      (pt -1.975 1.15))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -0.83 0.64)
+      (pt 0.83 0.64)
+      (pt 0.83 -0.64)
+      (pt -0.83 -0.64)
+      (pt -0.83 0.64))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt -0.83 0.098)
+      (pt -0.288 0.64))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -1.682 0.64)
+      (pt 0.83 0.64))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -0.83 -0.64)
+      (pt 0.83 -0.64))))
+   (leg 1 (pt -1.14 0) (padstack 0))
+   (leg 2 (pt 1.14 0) (padstack 0))
+   (padstack 0
+    (plated false)
+    (pad (layer TCOP) (rectf 0.55 1.085 0 0 0))
+   )
+   (model "BAT60JFILM.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)
