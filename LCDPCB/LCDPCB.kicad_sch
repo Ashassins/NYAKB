@@ -2138,22 +2138,6 @@
     (pin "2" (uuid a602d744-34c5-4ccb-b7e1-cf0419ba3163))
   )
 
-  (symbol (lib_id "Regulator_Linear:LD1117S12TR_SOT223") (at 48.26 74.93 0) (unit 1)
-    (in_bom yes) (on_board yes) (fields_autoplaced)
-    (uuid 347a6986-567c-41a0-b68f-23cd921c3c50)
-    (property "Reference" "U2" (id 0) (at 48.26 67.31 0))
-    (property "Value" "LD1117S12TR_SOT223" (id 1) (at 48.26 69.85 0))
-    (property "Footprint" "lib_file:LD1117" (id 2) (at 48.26 69.85 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/CD00000544.pdf" (id 3) (at 50.8 81.28 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 691f5e47-3ba9-4093-a9cf-0b27da71e9e1))
-    (pin "2" (uuid 25ab2faa-ad3a-44fd-8560-c87e79c57d2e))
-    (pin "3" (uuid 94adbe5b-6200-4f8f-8ec5-85eeaf3a008a))
-  )
-
   (symbol (lib_id "power:+3V0") (at 231.14 104.14 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 3f6dec9d-f68b-466a-84be-1fbdc434216a)
@@ -2867,6 +2851,22 @@
     (pin "2" (uuid c365afe8-2214-4c11-bdeb-0ec2370a9ba4))
   )
 
+  (symbol (lib_id "Regulator_Linear:LD1117S12TR_SOT223") (at 48.26 74.93 0) (unit 1)
+    (in_bom yes) (on_board yes) (fields_autoplaced)
+    (uuid fbc67559-7a68-4877-8113-d2e897e12db4)
+    (property "Reference" "U2" (id 0) (at 48.26 67.31 0))
+    (property "Value" "LD1117S12TR_SOT223" (id 1) (at 48.26 69.85 0))
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-223-3_TabPin2" (id 2) (at 48.26 69.85 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/CD00000544.pdf" (id 3) (at 50.8 81.28 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 45f59df9-6aa7-489c-8a84-de8112f343db))
+    (pin "2" (uuid 2158c045-0557-4b44-8580-059550e2470e))
+    (pin "3" (uuid 050d2def-5aec-4015-bbc6-73fa849b63bb))
+  )
+
   (sheet_instances
     (path "/" (page "1"))
   )
@@ -3007,8 +3007,8 @@
     (path "/62db0292-e35d-446a-acf5-25a3fa9ca23f"
       (reference "U1") (unit 1) (value "STM32F091RCT6") (footprint "lib_file:STM32F091")
     )
-    (path "/347a6986-567c-41a0-b68f-23cd921c3c50"
-      (reference "U2") (unit 1) (value "LD1117S12TR_SOT223") (footprint "lib_file:LD1117")
+    (path "/fbc67559-7a68-4877-8113-d2e897e12db4"
+      (reference "U2") (unit 1) (value "LD1117S12TR_SOT223") (footprint "Package_TO_SOT_SMD:SOT-223-3_TabPin2")
     )
   )
 )
