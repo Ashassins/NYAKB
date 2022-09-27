@@ -23,7 +23,7 @@ void enable_ports(void) {
 }
 
 //===========================================================================
-// 2.2 Configuring DMA transfers
+// Configuring DMA transfers
 //===========================================================================
 uint16_t msg[8] = { 0x0000,0x0100,0x0200,0x0300,0x0400,0x0500,0x0600,0x0700 };
 extern const char font[];
@@ -72,7 +72,7 @@ void append_display(char val) {
 }
 
 //===========================================================================
-// 2.3 Debouncing a Keypad
+// Debouncing a Keypad
 //===========================================================================
 const char keymap[] = "DCBA#9630852*741";
 uint8_t hist[16];
@@ -115,7 +115,7 @@ void update_history(int c, int rows)
 
 void init_tim6() {
   RCC->APB1ENR |= RCC_APB1ENR_TIM6EN; // on 4
-  TIM6->PSC = 48 - 1;
+  TIM6->PSC = 48 - 1; //double this
   TIM6->ARR = 1000 - 1;
   TIM6->DIER |= TIM_DIER_UIE;
   TIM6->CR1 |= TIM_CR1_CEN;
