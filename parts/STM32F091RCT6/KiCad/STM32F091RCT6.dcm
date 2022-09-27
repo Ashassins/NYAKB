@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP STM32F091RCT6
+D STMICROELECTRONICS - STM32F091RCT6 - MCU, 32BIT, CORTEX-M0, 48MHZ, LQFP-64
+K
+F http://www.st.com/content/ccc/resource/technical/document/datasheet/95/3c/2e/5b/21/09/45/a6/DM00115237.pdf/files/DM00115237.pdf/jcr:content/translations/en.DM00115237.pdf
+$ENDCMP
+#
+#End Doc Library

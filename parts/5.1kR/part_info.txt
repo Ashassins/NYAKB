@@ -1,0 +1,9 @@
+Manufacturer=Vishay
+PartNumber=CRCW12105K10JNEA
+PartCategory=Resistor
+PackageCategory=Resistor Chip
+PinCount=2
+Version=1.2
+Released=2019-02-25 15:22:54
+Downloaded=2022-09-27 03:19:26
+3D=Y

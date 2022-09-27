@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "ESHF-105-01-F-D-SM-LC"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2019-03-26-18:09:42)
+    (mountForm default
+        (footprintRef "ESHF10501FDSMLC")
+        (spec "System")
+    )
+)

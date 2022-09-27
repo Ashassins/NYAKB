@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'CRCW12105K10JNEA'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Vishay", "CRCW12105K10JNEA" (!) = "", "RESC3225X60N", "Resistor Chip", "71-CRCW1210J-5.1K-E3", "https://www.mouser.co.uk/ProductDetail/Vishay-Dale/CRCW12105K10JNEA?qs=%2FqQFlUriJiwyndHn10756Q%3D%3D", "VISHAY - CRCW12105K10JNEA - RESISTOR, THICK FILM, 5.1KOHM, 330mW, 5%", "http://componentsearchengine.com/Datasheets/2/CRCW12105K10JNEA.pdf", "0.6 mm"
+END_PART
+
+END.

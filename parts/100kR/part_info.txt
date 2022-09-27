@@ -1,0 +1,9 @@
+Manufacturer=Bourns
+PartNumber=CHV1206AJW-104ELF
+PartCategory=Resistor
+PackageCategory=Resistor Chip
+PinCount=2
+Version=2.1
+Released=2021-06-25 05:29:19
+Downloaded=2022-09-27 03:08:44
+3D=Y

@@ -1,0 +1,9 @@
+Manufacturer=SAMTEC
+PartNumber=ESHF-105-01-F-D-SM-LC
+PartCategory=Connector
+PackageCategory=Other
+PinCount=10
+Version=1.1
+Released=2019-03-26 18:09:42
+Downloaded=2022-09-26 22:09:54
+3D=Y

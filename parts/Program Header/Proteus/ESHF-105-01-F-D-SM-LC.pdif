@@ -1,0 +1,204 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "ESHF-105-01-F-D-SM-LC"
+   (description "SAMTEC - ESHF-105-01-F-D-SM-LC - CONNECTOR, HEADER, 10POS, 2ROW, 1.27MM")
+   (family "CON")
+   (package "ESHF10501FDSMLC")
+   (attribute "Datasheet Link" "http://suddendocs.samtec.com/prints/eshf-1xx-01-x-d-xx-xx-mkt.pdf")
+   (attribute "Geometry.Height" "5.33mm")
+   (attribute "Manufacturer_Name" "SAMTEC")
+   (attribute "Manufacturer_Part_Number" "ESHF-105-01-F-D-SM-LC")
+   (attribute "Mouser Part Number" "200-ESHF10501FDSMLC")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Samtec/ESHF-105-01-F-D-SM-LC?qs=%252BZP6%2F%252BtExtC01phIgADOpA%3D%3D")
+   (attribute "Arrow Part Number" "")
+   (attribute "Arrow Price/Stock" "")
+   (attribute "Mouser Testing Part Number" "")
+   (attribute "Mouser Testing Price/Stock" "")
+   (gate
+    (symbol "ESHF-105-01-F-D-SM-LC")
+    (pin "1" 1 PS)
+    (pin "2" 2 PS)
+    (pin "3" 3 PS)
+    (pin "4" 4 PS)
+    (pin "5" 5 PS)
+    (pin "6" 6 PS)
+    (pin "7" 7 PS)
+    (pin "8" 8 PS)
+    (pin "9" 9 PS)
+    (pin "10" 10 PS)
+   )
+  )
+  (symbol "ESHF-105-01-F-D-SM-LC"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 700 100) (pt 700 -500) (pt 200 -500) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 0) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 -100) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -200) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 -200) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -300) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 -300) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -400) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 900 -400) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "ESHF10501FDSMLC"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed true)
+      (pt -8.255 2.795)
+      (pt 8.255 2.795)
+      (pt 8.255 -2.795)
+      (pt -8.255 -2.795)
+      (pt -8.255 2.795))))
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -9.365 4.44)
+      (pt 9.365 4.44)
+      (pt 9.365 -4.44)
+      (pt -9.365 -4.44)
+      (pt -9.365 4.44))))
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -9.365 4.44)
+      (pt 9.365 4.44)
+      (pt 9.365 -5)
+      (pt -9.365 -5)
+      (pt -9.365 4.44))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt -3.5 2.795)
+      (pt -8.255 2.795)
+      (pt -8.255 1))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt -8.255 -1)
+      (pt -8.255 -2.795)
+      (pt -3.5 -2.795))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt 3.5 -2.795)
+      (pt 8.255 -2.795)
+      (pt 8.255 -1))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed false)
+      (pt 3.5 2.795)
+      (pt 8.255 2.795)
+      (pt 8.255 1))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed true)
+      (pt -2.6 -3.9)
+      (arc (pt -2.600 -3.900) (pt -2.600 -4.000) (pt -2.400 -3.800) (start 180.0) (sweep 180.0))
+      (pt -2.4 -3.9)
+      (arc (pt -2.400 -3.900) (pt -2.600 -4.000) (pt -2.400 -3.800) (start 180.0) (sweep .0))
+      (pt -2.6 -3.9))))
+   (leg 1 (pt -2.540 -2.038) (padstack 0))
+   (leg 2 (pt -2.540 2.037) (padstack 0))
+   (leg 3 (pt -1.270 -2.038) (padstack 0))
+   (leg 4 (pt -1.270 2.037) (padstack 0))
+   (leg 5 (pt 0.000 -2.038) (padstack 0))
+   (leg 6 (pt 0.000 2.037) (padstack 0))
+   (leg 7 (pt 1.270 -2.038) (padstack 0))
+   (leg 8 (pt 1.270 2.037) (padstack 0))
+   (leg 9 (pt 2.540 -2.038) (padstack 0))
+   (leg 10 (pt 2.540 2.037) (padstack 0))
+   (leg LC1 (pt -7.770 0.000) (padstack 11))
+   (leg LC2 (pt 7.770 0.000) (padstack 12))
+   (padstack 0
+    (plated false)
+    (pad (layer TCOP) (rectf 0.740 2.805 0 0 90.000))
+   )
+   (padstack 11
+    (hole 1.19)
+    (plated false)
+    (pad (layer TCOP) (round 0.595))
+    (pad (layer INNER) (round 0.595))
+    (pad (layer BCOP) (round 0.595))
+   )
+   (padstack 12
+    (hole 1.19)
+    (plated false)
+    (pad (layer TCOP) (round 0.595))
+    (pad (layer INNER) (round 0.595))
+    (pad (layer BCOP) (round 0.595))
+   )
+   (model "ESHF-105-01-F-D-SM-LC.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)

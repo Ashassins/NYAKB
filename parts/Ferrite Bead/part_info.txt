@@ -1,0 +1,9 @@
+Manufacturer=Würth Elektronik
+PartNumber=7427920415
+PartCategory=Inductor
+PackageCategory=Capacitor Chip Non-polarised
+PinCount=2
+Version=2.2
+Released=2017-01-12 14:11:15
+Downloaded=2022-09-27 02:50:45
+3D=Y

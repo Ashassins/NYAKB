@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'CHV1206AJW_104ELF'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Bourns", "CHV1206AJW-104ELF" (!) = "", "RESC3116X65N", "Resistor Chip", "652-CHV1206AJW104ELF", "https://www.mouser.co.uk/ProductDetail/Bourns/CHV1206AJW-104ELF?qs=QNEnbhJQKvb0X%252BAMRpPzlg%3D%3D", "ResHV A 1206 100k 5% 0.25W TCR200", "https://www.bourns.com/docs/Product-Datasheets/CHV.pdf", "0.65 mm"
+END_PART
+
+END.

@@ -1,0 +1,103 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "CKC21C104KDGLC7805"
+   (description "Multilayer Ceramic Capacitors MLCC - SMD/SMT 1kVol 0.1uF 1812 10% KCLINK KONNEKT")
+   (family "CAP")
+   (package "CAPC5777X540N")
+   (attribute "Datasheet Link" "")
+   (attribute "Geometry.Height" "5.4mm")
+   (attribute "Mouser Part Number" "80-CKC21C104KDG7805")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/KEMET/CKC21C104KDGLC7805?qs=Li%252BoUPsLEntRx0nGSqp2Ng%3D%3D")
+   (attribute "Manufacturer_Name" "KEMET")
+   (attribute "Manufacturer_Part_Number" "CKC21C104KDGLC7805")
+   (gate
+    (symbol "CKC21C104KDGLC7805")
+    (pin "1" 1 PS)
+    (pin "2" 2 PS)
+   )
+  )
+  (symbol "CKC21C104KDGLC7805"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 220 100) (pt 220 -100))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 280 100) (pt 280 -100))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 200 0) (pt 220 0))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 280 0) (pt 300 0))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 0 -10) (rot 0) (just TOP LEFT) (visible false))
+    (number (pt 0 10) (rot 0) (just BOTTOM LEFT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 500 0) (rot 0) (mir X) (visible true))
+    (name (pt 0 -10) (rot 0) (just TOP LEFT) (visible false))
+    (number (pt 0 10) (rot 0) (just BOTTOM LEFT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "CAPC5777X540N"
+   (units MM)
+   (layer OCCA
+    (graphic
+     (stroke 0.05)
+     (path
+      (closed true)
+      (pt -3.405 4.31)
+      (pt 3.405 4.31)
+      (pt 3.405 -4.31)
+      (pt -3.405 -4.31)
+      (pt -3.405 4.31))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -2.85 3.85)
+      (pt 2.85 3.85)
+      (pt 2.85 -3.85)
+      (pt -2.85 -3.85)
+      (pt -2.85 3.85))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt 0 3.75)
+      (pt 0 -3.75))))
+   (leg 1 (pt -2.59 0) (padstack 0))
+   (leg 2 (pt 2.59 0) (padstack 0))
+   (padstack 0
+    (plated false)
+    (pad (layer TCOP) (rectf 1.33 8.31 0 0 90))
+   )
+   (model "CKC21C104KDGLC7805.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)

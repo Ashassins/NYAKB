@@ -1,0 +1,66 @@
+(Japanese_coding: sjis)
+(function "ECS_265155"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2017-01-12-14:11:15)
+    (utime 2018-09-27-18:49:17)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "7427920415")
+)
+
+
+(pinAssign "ECS_265155"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2017-01-12-14:11:15)
+    (utime 2018-09-27-18:49:17)
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_265155")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "7427920415")
+)
+
+
+(part "7427920415"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2017-01-12-14:11:15)
+    (utime 2018-09-27-18:49:17)
+    (packageRef "7427920415")
+    (pinAssignRef "ECS_265155")
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "NO")
+    (property "refDesPrefix" "L")
+    (property "description" "SMD EMI Suppression Ferrite Beads WE-CBF")
+    (property "Mouser_Part_Number" "710-7427920415")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/Wurth-Elektronik/7427920415?qs=5twSNpOB8IBoGdt1rY0Wtw%3D%3D")
+    (property "Manufacturer_Name" "Wurth Elektronik")
+    (property "Manufacturer_Part_Number" "7427920415")
+    (property "Datasheet_Link" "")
+    (property "compAreaTopHeight" 0.9)
+)
+
+

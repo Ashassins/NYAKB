@@ -1,0 +1,66 @@
+(Japanese_coding: sjis)
+(function "ECS_686646"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-08-30-12:25:20)
+    (utime 2022-08-31-06:25:31)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "BAT_60B_E6327")
+)
+
+
+(pinAssign "ECS_686646"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-08-30-12:25:20)
+    (utime 2022-08-31-06:25:31)
+    (interface
+        (port "1" (symbPinId 1) (portName "K") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "A") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_686646")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "BAT_60B_E6327")
+)
+
+
+(part "BAT_60B_E6327"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-08-30-12:25:20)
+    (utime 2022-08-31-06:25:31)
+    (packageRef "BAT_60B_E6327")
+    (pinAssignRef "ECS_686646")
+    (interface
+        (port "1" (symbPinId 1) (portName "K") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "A") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "NO")
+    (property "refDesPrefix" "D")
+    (property "description" "Schottky Diodes & Rectifiers Silicon Schottky Diode")
+    (property "Mouser_Part_Number" "726-BAT60BE6327")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/Infineon-Technologies/BAT-60B-E6327?qs=mzcOS1kGbgdKRNElyBqymA%3D%3D")
+    (property "Manufacturer_Name" "Infineon")
+    (property "Manufacturer_Part_Number" "BAT 60B E6327")
+    (property "Datasheet_Link" "")
+    (property "compAreaTopHeight" 1.1)
+)
+
+

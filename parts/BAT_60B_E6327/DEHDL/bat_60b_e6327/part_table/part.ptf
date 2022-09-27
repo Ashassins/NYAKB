@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'BAT_60B_E6327'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Infineon", "BAT 60B E6327" (!) = "", "SOD2513X110N", "Small Outline Diode", "726-BAT60BE6327", "https://www.mouser.co.uk/ProductDetail/Infineon-Technologies/BAT-60B-E6327?qs=mzcOS1kGbgdKRNElyBqymA%3D%3D", "Schottky Diodes & Rectifiers Silicon Schottky Diode", "", "1.1 mm"
+END_PART
+
+END.

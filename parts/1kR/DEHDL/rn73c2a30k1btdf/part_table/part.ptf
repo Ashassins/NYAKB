@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'RN73C2A30K1BTDF'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "TE Connectivity", "RN73C2A30K1BTDF" (!) = "", "RESC2012X65N", "Resistor Chip", "279-RN73CA-30.1K", "https://www.mouser.com/Search/Refine.aspx?Keyword=279-RN73CA-30.1K", "TE CONNECTIVITY - RN73C2A30K1BTDF - RESISTOR, THIN FILM, 30K1, 0.1%, 0805", "https://componentsearchengine.com/Datasheets/1/RN73C2A30K1BTDF.pdf", "0.65 mm"
+END_PART
+
+END.

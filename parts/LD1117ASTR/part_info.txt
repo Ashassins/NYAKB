@@ -1,0 +1,9 @@
+Manufacturer=STMicroelectronics
+PartNumber=LD1117ASTR
+PartCategory=Integrated Circuit
+PackageCategory=SOT223 (3-Pin)
+PinCount=4
+Version=2.1
+Released=2015-04-27 01:36:57
+Downloaded=2022-09-27 03:44:06
+3D=Y

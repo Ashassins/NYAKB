@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "RN73C2A30K1BTDF"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2018-06-06-11:10:45)
+    (mountForm default
+        (footprintRef "RESC2012X65N")
+        (spec "System")
+    )
+)

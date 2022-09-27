@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'STM32F091RCT6'
+CLASS = IC
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "STMicroelectronics", "STM32F091RCT6" (!) = "", "QFP50P1200X1200X160-64N", "Quad Flat Packages", "511-STM32F091RCT6", "https://www.mouser.co.uk/ProductDetail/STMicroelectronics/STM32F091RCT6?qs=ClYTdQWm4hDCc82GnPpqOQ%3D%3D", "STMICROELECTRONICS - STM32F091RCT6 - MCU, 32BIT, CORTEX-M0, 48MHZ, LQFP-64", "http://www.st.com/content/ccc/resource/technical/document/datasheet/95/3c/2e/5b/21/09/45/a6/DM00115237.pdf/files/DM00115237.pdf/jcr:content/translations/en.DM00115237.pdf", "1.6 mm"
+END_PART
+
+END.

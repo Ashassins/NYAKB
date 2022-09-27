@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP LD1117ASTR
+D LD1117ASTR, Low Dropout Voltage Regulator, Adjustable 1.2A, 1.25  15 V +/-2%, 4-Pin SOT-223
+K
+F http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/CD00002116.pdf
+$ENDCMP
+#
+#End Doc Library

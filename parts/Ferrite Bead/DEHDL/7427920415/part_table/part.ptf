@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART '7427920415'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Wurth Elektronik", "7427920415" (!) = "", "CAPC2012X90N", "Capacitor Chip Non-polarised", "710-7427920415", "https://www.mouser.co.uk/ProductDetail/Wurth-Elektronik/7427920415?qs=5twSNpOB8IBoGdt1rY0Wtw%3D%3D", "SMD EMI Suppression Ferrite Beads WE-CBF", "", "0.9 mm"
+END_PART
+
+END.

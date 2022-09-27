@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'ESHF_105_01_F_D_SM_LC'
+CLASS = IO
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "ARROW_PART_NUMBER", "ARROW_PRICE/STOCK", "MOUSER_TESTING_PART_NUMBER", "MOUSER_TESTING_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "SAMTEC", "ESHF-105-01-F-D-SM-LC" (!) = "", "ESHF10501FDSMLC", "Other", "200-ESHF10501FDSMLC", "https://www.mouser.co.uk/ProductDetail/Samtec/ESHF-105-01-F-D-SM-LC?qs=%252BZP6%2F%252BtExtC01phIgADOpA%3D%3D", "", "", "", "", "SAMTEC - ESHF-105-01-F-D-SM-LC - CONNECTOR, HEADER, 10POS, 2ROW, 1.27MM", "http://suddendocs.samtec.com/prints/eshf-1xx-01-x-d-xx-xx-mkt.pdf", "5.33 mm"
+END_PART
+
+END.

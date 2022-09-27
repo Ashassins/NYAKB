@@ -1,0 +1,9 @@
+Manufacturer=TE Connectivity
+PartNumber=RN73C2A30K1BTDF
+PartCategory=Resistor
+PackageCategory=Resistor Chip
+PinCount=2
+Version=1.2
+Released=2017-01-10 13:18:14
+Downloaded=2022-09-27 03:15:46
+3D=Y

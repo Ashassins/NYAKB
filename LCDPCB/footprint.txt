@@ -1,0 +1,343 @@
+Info: Processing symbol 'C1:lib_file:.1uFC'.
+Info: Processing symbol 'C7:lib_file:.1uFC'.
+Info: Processing symbol 'C10:lib_file:.1uFC'.
+Info: Processing symbol 'C6:lib_file:.1uFC'.
+Info: Processing symbol 'C3:lib_file:.1uFC'.
+Info: Processing symbol 'J2:Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical'.
+Info: Processing symbol 'D2:lib_file:BAT60B'.
+Info: Processing symbol 'FB1:lib_file:Ferrite'.
+Info: Processing symbol 'C5:lib_file:22uFC'.
+Info: Processing symbol 'J3:lib_file:programming header'.
+Info: Processing symbol 'C2:lib_file:22uFC'.
+Info: Processing symbol 'J1:Connector_PinSocket_2.54mm:PinSocket_1x14_P2.54mm_Vertical'.
+Info: Processing symbol 'D3:lib_file:BAT60B'.
+Info: Processing symbol 'C4:lib_file:.1uFC'.
+Info: Processing symbol 'C9:lib_file:.1uFC'.
+Info: Processing symbol 'C8:lib_file:.1uFC'.
+Info: Processing symbol 'R1:lib_file:100KR'.
+Info: Processing symbol 'R2:lib_file:100KR'.
+Info: Processing symbol 'R3:lib_file:1kR'.
+Info: Processing symbol 'R4:Resistor_SMD:R_0402_1005Metric'.
+Info: Processing symbol 'SW1:Button_Switch_THT:SW_PUSH_6mm'.
+Info: Processing symbol 'U1:lib_file:STM32F091'.
+Info: Processing symbol 'U2:lib_file:LD1117'.
+Add net GND.
+Connected C1 pin 2 to GND.
+Added C2 (footprint 'lib_file:22uFC').
+Changed C** reference designator to C2.
+Changed C2 value from 22uFC to 22uF.
+Updated C2 symbol association from  to /f24fd606-4838-4530-b0e3-89032e781ead.
+Updated C2 properties.
+Add net Net-(U2-Pad3).
+Connected C2 pin 1 to Net-(U2-Pad3).
+Connected C2 pin 2 to GND.
+Added C3 (footprint 'lib_file:.1uFC').
+Changed C** reference designator to C3.
+Changed C3 value from .1uFC to .1uF.
+Updated C3 symbol association from  to /5da5ad4e-2433-4ba1-8c71-f4c200e15d6f.
+Updated C3 properties.
+Connected C3 pin 1 to Net-(U2-Pad3).
+Connected C3 pin 2 to GND.
+Added C4 (footprint 'lib_file:.1uFC').
+Changed C** reference designator to C4.
+Changed C4 value from .1uFC to .1uF.
+Updated C4 symbol association from  to /20614edd-2b9a-4e44-81c3-6faa4533f4df.
+Updated C4 properties.
+Add net Net-(C5-Pad1).
+Connected C4 pin 1 to Net-(C5-Pad1).
+Connected C4 pin 2 to GND.
+Added C5 (footprint 'lib_file:22uFC').
+Changed C** reference designator to C5.
+Changed C5 value from 22uFC to 22uF.
+Updated C5 symbol association from  to /539f87f9-cf10-45cd-a5d1-7d1a9d2a2b8f.
+Updated C5 properties.
+Connected C5 pin 1 to Net-(C5-Pad1).
+Connected C5 pin 2 to GND.
+Added C6 (footprint 'lib_file:.1uFC').
+Changed C** reference designator to C6.
+Changed C6 value from .1uFC to .1uF.
+Updated C6 symbol association from  to /5a769286-a8c8-4ba6-bd0a-7d58c48ddf5f.
+Updated C6 properties.
+Add net Net-(FB1-Pad2).
+Connected C6 pin 1 to Net-(FB1-Pad2).
+Connected C6 pin 2 to GND.
+Added C7 (footprint 'lib_file:.1uFC').
+Changed C** reference designator to C7.
+Changed C7 value from .1uFC to .1uF.
+Updated C7 symbol association from  to /01a61439-1ddd-4676-8d95-432bae72f5c7.
+Updated C7 properties.
+Add net Net-(C9-Pad1).
+Connected C7 pin 1 to Net-(C9-Pad1).
+Connected C7 pin 2 to GND.
+Added C8 (footprint 'lib_file:.1uFC').
+Changed C** reference designator to C8.
+Changed C8 value from .1uFC to .1uF.
+Updated C8 symbol association from  to /7a4c4a48-fc74-4444-b489-0ec4d259f250.
+Updated C8 properties.
+Connected C8 pin 1 to Net-(C9-Pad1).
+Connected C8 pin 2 to GND.
+Added C9 (footprint 'lib_file:.1uFC').
+Changed C** reference designator to C9.
+Changed C9 value from .1uFC to .1uF.
+Updated C9 symbol association from  to /4a6837d3-88a4-46c0-ac0e-dfb25ece64d7.
+Updated C9 properties.
+Connected C9 pin 1 to Net-(C9-Pad1).
+Connected C9 pin 2 to GND.
+Added C10 (footprint 'lib_file:.1uFC').
+Changed C** reference designator to C10.
+Changed C10 value from .1uFC to .1uF.
+Updated C10 symbol association from  to /c805357a-b77a-40e4-9438-2407f6b3a5e3.
+Updated C10 properties.
+Connected C10 pin 1 to Net-(C9-Pad1).
+Connected C10 pin 2 to GND.
+Added D2 (footprint 'lib_file:BAT60B').
+Changed D** reference designator to D2.
+Changed D2 value from BAT60B to BAT60A.
+Updated D2 symbol association from  to /f3eeaca9-01b9-45ab-a60b-99a2befb5b1d.
+Updated D2 properties.
+Add net +3V0.
+Connected D2 pin 1 to +3V0.
+Connected D2 pin 2 to Net-(C5-Pad1).
+Added D3 (footprint 'lib_file:BAT60B').
+Changed D** reference designator to D3.
+Changed D3 value from BAT60B to BAT60A.
+Updated D3 symbol association from  to /eb4cb8d8-0281-4c02-b2b5-842a27215625.
+Updated D3 properties.
+Add net +5V.
+Connected D3 pin 1 to +5V.
+Add net /U5V.
+Connected D3 pin 2 to /U5V.
+Added FB1 (footprint 'lib_file:Ferrite').
+Changed L** reference designator to FB1.
+Changed FB1 value from Ferrite to FerriteBead.
+Updated FB1 symbol association from  to /bf39286c-c998-45e7-99b6-5106f72f3fcc.
+Updated FB1 properties.
+Connected FB1 pin 1 to Net-(C9-Pad1).
+Connected FB1 pin 2 to Net-(FB1-Pad2).
+Added J1 (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x14_P2.54mm_Vertical').
+Changed REF** reference designator to J1.
+Changed J1 value from PinSocket_1x14_P2.54mm_Vertical to Sockets.
+Updated J1 symbol association from  to /be327ca8-c2e7-4e54-b1ea-13988892d11e.
+Updated J1 properties.
+Connected J1 pin 1 to +3V0.
+Connected J1 pin 2 to GND.
+Add net PB8.
+Connected J1 pin 3 to PB8.
+Add net PB11.
+Connected J1 pin 4 to PB11.
+Add net PB14.
+Connected J1 pin 5 to PB14.
+Add net PB5.
+Connected J1 pin 6 to PB5.
+Add net PB3.
+Connected J1 pin 7 to PB3.
+Connected J1 pin 8 to +3V0.
+Add net unconnected-(J1-Pad9).
+Connected J1 pin 9 to unconnected-(J1-Pad9).
+Add net unconnected-(J1-Pad10).
+Connected J1 pin 10 to unconnected-(J1-Pad10).
+Add net unconnected-(J1-Pad11).
+Connected J1 pin 11 to unconnected-(J1-Pad11).
+Add net unconnected-(J1-Pad12).
+Connected J1 pin 12 to unconnected-(J1-Pad12).
+Add net unconnected-(J1-Pad13).
+Connected J1 pin 13 to unconnected-(J1-Pad13).
+Add net unconnected-(J1-Pad14).
+Connected J1 pin 14 to unconnected-(J1-Pad14).
+Added J2 (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical').
+Changed REF** reference designator to J2.
+Changed J2 value from PinSocket_1x02_P2.54mm_Vertical to Hot plug.
+Updated J2 symbol association from  to /268bdb59-71c4-4a07-b29c-952e4545aea6.
+Updated J2 properties.
+Add net PA6.
+Connected J2 pin 1 to PA6.
+Add net PA7.
+Connected J2 pin 2 to PA7.
+Added J3 (footprint 'lib_file:programming header').
+Changed J** reference designator to J3.
+Changed J3 value from programming header to Programming Header.
+Updated J3 symbol association from  to /648da454-cb45-4d2e-a08a-a8b697cebc04.
+Updated J3 properties.
+Connected J3 pin 1 to NRST.
+Add net /PA13.
+Connected J3 pin 2 to /PA13.
+Connected J3 pin 3 to GND.
+Connected J3 pin 4 to GND.
+Add net unconnected-(J3-Pad5).
+Connected J3 pin 5 to unconnected-(J3-Pad5).
+Add net /PA14.
+Connected J3 pin 6 to /PA14.
+Add net /V3.3_IN.
+Connected J3 pin 7 to /V3.3_IN.
+Connected J3 pin 8 to /V3.3_IN.
+Connected J3 pin 9 to /U5V.
+Connected J3 pin 10 to /U5V.
+Added C1 (footprint 'lib_file:.1uFC').
+Added R1 (footprint 'lib_file:100KR').
+Changed R** reference designator to R1.
+Changed R1 value from 100KR to 100K.
+Updated R1 symbol association from  to /657e5b81-1c71-4b34-823e-1b3d24230a76.
+Updated R1 properties.
+Connected R1 pin 1 to +3V0.
+Connected R1 pin 2 to NRST.
+Changed C** reference designator to C1.
+Added R2 (footprint 'lib_file:100KR').
+Changed R** reference designator to R2.
+Changed R2 value from 100KR to 100k.
+Updated R2 symbol association from  to /78afa6b0-5a66-4dad-8037-4b344704ba6a.
+Updated R2 properties.
+Connected R2 pin 1 to GND.
+Add net /BOOT0.
+Connected R2 pin 2 to /BOOT0.
+Changed C1 value from .1uFC to .1uF.
+Added R3 (footprint 'lib_file:1kR').
+Changed R** reference designator to R3.
+Changed R3 value from 1kR to 1K.
+Updated R3 symbol association from  to /1b63d79f-2851-4bcf-b622-bb66c0b5c1ae.
+Updated R3 properties.
+Connected R3 pin 1 to +3V0.
+Connected R3 pin 2 to GND.
+Updated C1 symbol association from  to /288a3ec0-122f-4360-968a-e07818d05bc7.
+Added R4 (footprint 'Resistor_SMD:R_0402_1005Metric').
+Changed REF** reference designator to R4.
+Changed R4 value from R_0402_1005Metric to 5.1K.
+Updated R4 symbol association from  to /8efa2d6b-ac93-463d-8fc3-82bea1d9a16b.
+Updated R4 properties.
+Connected R4 pin 1 to +5V.
+Connected R4 pin 2 to GND.
+Updated C1 properties.
+Added SW1 (footprint 'Button_Switch_THT:SW_PUSH_6mm').
+Changed REF** reference designator to SW1.
+Changed SW1 value from SW_PUSH_6mm to SW_Push.
+Updated SW1 symbol association from  to /763fa959-745c-4cb0-8869-5f2c5ac68c34.
+Updated SW1 properties.
+Connected SW1 pin 1 to GND.
+Connected SW1 pin 1 to GND.
+Connected SW1 pin 2 to NRST.
+Connected SW1 pin 2 to NRST.
+Add net NRST.
+Added U1 (footprint 'lib_file:STM32F091').
+Changed IC** reference designator to U1.
+Changed U1 value from STM32F091 to STM32F091RCT6.
+Updated U1 symbol association from  to /62db0292-e35d-446a-acf5-25a3fa9ca23f.
+Updated U1 properties.
+Connected U1 pin 1 to +3V0.
+Add net unconnected-(U1-Pad2).
+Connected U1 pin 2 to unconnected-(U1-Pad2).
+Add net unconnected-(U1-Pad3).
+Connected U1 pin 3 to unconnected-(U1-Pad3).
+Add net unconnected-(U1-Pad4).
+Connected U1 pin 4 to unconnected-(U1-Pad4).
+Add net unconnected-(U1-Pad5).
+Connected U1 pin 5 to unconnected-(U1-Pad5).
+Add net unconnected-(U1-Pad6).
+Connected U1 pin 6 to unconnected-(U1-Pad6).
+Connected U1 pin 7 to NRST.
+Add net unconnected-(U1-Pad8).
+Connected U1 pin 8 to unconnected-(U1-Pad8).
+Add net unconnected-(U1-Pad9).
+Connected U1 pin 9 to unconnected-(U1-Pad9).
+Add net unconnected-(U1-Pad10).
+Connected U1 pin 10 to unconnected-(U1-Pad10).
+Add net unconnected-(U1-Pad11).
+Connected U1 pin 11 to unconnected-(U1-Pad11).
+Connected U1 pin 12 to GND.
+Add net +3.3VA.
+Connected U1 pin 13 to +3.3VA.
+Add net unconnected-(U1-Pad14).
+Connected U1 pin 14 to unconnected-(U1-Pad14).
+Add net unconnected-(U1-Pad15).
+Connected U1 pin 15 to unconnected-(U1-Pad15).
+Add net unconnected-(U1-Pad16).
+Connected U1 pin 16 to unconnected-(U1-Pad16).
+Add net unconnected-(U1-Pad17).
+Connected U1 pin 17 to unconnected-(U1-Pad17).
+Connected U1 pin 18 to GND.
+Connected U1 pin 19 to +3V0.
+Add net unconnected-(U1-Pad20).
+Connected U1 pin 20 to unconnected-(U1-Pad20).
+Add net unconnected-(U1-Pad21).
+Connected U1 pin 21 to unconnected-(U1-Pad21).
+Connected U1 pin 22 to PA6.
+Connected U1 pin 23 to PA7.
+Add net unconnected-(U1-Pad24).
+Connected U1 pin 24 to unconnected-(U1-Pad24).
+Add net unconnected-(U1-Pad25).
+Connected U1 pin 25 to unconnected-(U1-Pad25).
+Add net unconnected-(U1-Pad26).
+Connected U1 pin 26 to unconnected-(U1-Pad26).
+Add net unconnected-(U1-Pad27).
+Connected U1 pin 27 to unconnected-(U1-Pad27).
+Add net unconnected-(U1-Pad28).
+Connected U1 pin 28 to unconnected-(U1-Pad28).
+Add net unconnected-(U1-Pad29).
+Connected U1 pin 29 to unconnected-(U1-Pad29).
+Connected U1 pin 30 to PB11.
+Connected U1 pin 31 to GND.
+Connected U1 pin 32 to +3V0.
+Add net unconnected-(U1-Pad33).
+Connected U1 pin 33 to unconnected-(U1-Pad33).
+Add net unconnected-(U1-Pad34).
+Connected U1 pin 34 to unconnected-(U1-Pad34).
+Connected U1 pin 35 to PB14.
+Add net unconnected-(U1-Pad36).
+Connected U1 pin 36 to unconnected-(U1-Pad36).
+Add net unconnected-(U1-Pad37).
+Connected U1 pin 37 to unconnected-(U1-Pad37).
+Add net unconnected-(U1-Pad38).
+Connected U1 pin 38 to unconnected-(U1-Pad38).
+Add net unconnected-(U1-Pad39).
+Connected U1 pin 39 to unconnected-(U1-Pad39).
+Add net unconnected-(U1-Pad40).
+Connected U1 pin 40 to unconnected-(U1-Pad40).
+Add net unconnected-(U1-Pad41).
+Connected U1 pin 41 to unconnected-(U1-Pad41).
+Add net unconnected-(U1-Pad42).
+Connected U1 pin 42 to unconnected-(U1-Pad42).
+Add net unconnected-(U1-Pad43).
+Connected U1 pin 43 to unconnected-(U1-Pad43).
+Add net unconnected-(U1-Pad44).
+Connected U1 pin 44 to unconnected-(U1-Pad44).
+Add net unconnected-(U1-Pad45).
+Connected U1 pin 45 to unconnected-(U1-Pad45).
+Connected U1 pin 46 to /PA13.
+Connected U1 pin 47 to GND.
+Connected U1 pin 48 to +3V0.
+Connected U1 pin 49 to /PA14.
+Add net unconnected-(U1-Pad50).
+Connected U1 pin 50 to unconnected-(U1-Pad50).
+Add net unconnected-(U1-Pad51).
+Connected U1 pin 51 to unconnected-(U1-Pad51).
+Add net unconnected-(U1-Pad52).
+Connected U1 pin 52 to unconnected-(U1-Pad52).
+Add net unconnected-(U1-Pad53).
+Connected U1 pin 53 to unconnected-(U1-Pad53).
+Add net unconnected-(U1-Pad54).
+Connected U1 pin 54 to unconnected-(U1-Pad54).
+Connected U1 pin 55 to PB3.
+Add net unconnected-(U1-Pad56).
+Connected U1 pin 56 to unconnected-(U1-Pad56).
+Connected U1 pin 57 to PB5.
+Add net unconnected-(U1-Pad58).
+Connected U1 pin 58 to unconnected-(U1-Pad58).
+Add net unconnected-(U1-Pad59).
+Connected U1 pin 59 to unconnected-(U1-Pad59).
+Connected U1 pin 60 to /BOOT0.
+Connected U1 pin 61 to PB8.
+Add net unconnected-(U1-Pad62).
+Connected U1 pin 62 to unconnected-(U1-Pad62).
+Connected U1 pin 63 to GND.
+Connected U1 pin 64 to +3V0.
+Connected C1 pin 1 to NRST.
+Added U2 (footprint 'lib_file:LD1117').
+Changed IC** reference designator to U2.
+Changed U2 value from LD1117 to LD1117S12TR_SOT223.
+Updated U2 symbol association from  to /347a6986-567c-41a0-b68f-23cd921c3c50.
+Updated U2 properties.
+Connected U2 pin 1 to GND.
+Connected U2 pin 2 to Net-(C5-Pad1).
+Connected U2 pin 3 to Net-(U2-Pad3).
+Warning: No net found for symbol U2 pin 4.
+
+
+Info: Total warnings: 0, errors: 0.

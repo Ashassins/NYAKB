@@ -1,0 +1,9 @@
+Manufacturer=Infineon
+PartNumber=BAT 60B E6327
+PartCategory=Diode
+PackageCategory=Small Outline Diode
+PinCount=2
+Version=1.1
+Released=2022-08-30 12:25:20
+Downloaded=2022-09-27 02:36:09
+3D=Y
