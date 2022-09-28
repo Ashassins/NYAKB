@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "FSM2JSMAATR"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2018-06-06-11:10:45)
+    (mountForm default
+        (footprintRef "FSM2J_1")
+        (spec "System")
+    )
+)

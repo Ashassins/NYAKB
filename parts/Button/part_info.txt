@@ -1,0 +1,9 @@
+Manufacturer=TE Connectivity
+PartNumber=FSM2JSMAATR
+PartCategory=Switch
+PackageCategory=Other
+PinCount=4
+Version=2.1
+Released=2017-08-28 12:24:43
+Downloaded=2022-09-27 20:50:02
+3D=Y
