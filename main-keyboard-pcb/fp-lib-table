@@ -7,4 +7,6 @@
   (lib (name "stm32f4_2")(type "KiCad")(uri "${KIPRJMOD}/stm32f4_2.pretty")(options "")(descr ""))
   (lib (name "MX_Only")(type "KiCad")(uri "${KIPRJMOD}/MX_Only.pretty")(options "")(descr ""))
   (lib (name "MX_Switch")(type "KiCad")(uri "${KIPRJMOD}/MX_Switch.pretty")(options "")(descr ""))
+  (lib (name "DIODES_KEEB")(type "KiCad")(uri "${KIPRJMOD}/MX_Only.pretty/DIODES_KEEB.pretty")(options "")(descr ""))
+  (lib (name "DIODES_KEEB_2")(type "KiCad")(uri "${KIPRJMOD}/DIODES_KEEB_2.pretty")(options "")(descr ""))
 )
