@@ -4,4 +4,7 @@
   (lib (name "main-keyboard-pcb")(type "KiCad")(uri "${KIPRJMOD}/footprints/main-keyboard-pcb.pretty")(options "")(descr ""))
   (lib (name "buck-converter")(type "KiCad")(uri "${KIPRJMOD}/buck-converter.pretty")(options "")(descr ""))
   (lib (name "stm32f4")(type "KiCad")(uri "/home/avanish/Kicad/main-keyboard/main-keyboard-pcb/stm32f4.pretty")(options "")(descr ""))
+  (lib (name "stm32f4_2")(type "KiCad")(uri "${KIPRJMOD}/stm32f4_2.pretty")(options "")(descr ""))
+  (lib (name "MX_Only")(type "KiCad")(uri "${KIPRJMOD}/MX_Only.pretty")(options "")(descr ""))
+  (lib (name "MX_Switch")(type "KiCad")(uri "${KIPRJMOD}/MX_Switch.pretty")(options "")(descr ""))
 )
