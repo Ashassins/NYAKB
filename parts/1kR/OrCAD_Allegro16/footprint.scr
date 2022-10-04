@@ -2,7 +2,7 @@
 Version 14#
 setwindow pcb
 new
-newdrawfillin "RESC2012X65N.dra" "Package Symbol"
+newdrawfillin "ERJUP3.dra" "Package Symbol"
 prmed
 setwindow Form.prmedit
 FORM prmedit design
@@ -123,11 +123,11 @@ FORM mini offsety 0.00
 FORM mini rotate_pin 180
 Add Pin
 setwindow Form.mini
-FORM mini pad_name r145_105
+FORM mini pad_name r90_65
 setwindow Form.mini
 FORM mini next_pin_number 1
 setwindow pcb
-pick -0.9 0
+pick -0.575 0
 done
 Add Pin
 setwindow Form.mini
@@ -136,11 +136,11 @@ FORM mini offsety 0.00
 FORM mini rotate_pin 180
 Add Pin
 setwindow Form.mini
-FORM mini pad_name r145_105
+FORM mini pad_name r90_65
 setwindow Form.mini
 FORM mini next_pin_number 2
 setwindow pcb
-pick 0.9 0
+pick 0.575 0
 done
 setwindow pcb
 Label refdes
@@ -158,104 +158,93 @@ done
 Add Line
 setwindow FORM.mini
 FORM mini class PACKAGE GEOMETRY
-FORM mini subclass PLACE_BOUND_TOP
-setwindow FORM.mini
-FORM mini line_width 0.05
-FORM mini lock_direction Off
-setwindow pcb
-pick -1.675 1
-pick 1.675 1
-done
-Add Line
-setwindow FORM.mini
-FORM mini class PACKAGE GEOMETRY
-FORM mini subclass PLACE_BOUND_TOP
-setwindow FORM.mini
-FORM mini line_width 0.05
-FORM mini lock_direction Off
-setwindow pcb
-pick 1.675 1
-pick 1.675 -1
-done
-Add Line
-setwindow FORM.mini
-FORM mini class PACKAGE GEOMETRY
-FORM mini subclass PLACE_BOUND_TOP
-setwindow FORM.mini
-FORM mini line_width 0.05
-FORM mini lock_direction Off
-setwindow pcb
-pick 1.675 -1
-pick -1.675 -1
-done
-Add Line
-setwindow FORM.mini
-FORM mini class PACKAGE GEOMETRY
-FORM mini subclass PLACE_BOUND_TOP
-setwindow FORM.mini
-FORM mini line_width 0.05
-FORM mini lock_direction Off
-setwindow pcb
-pick -1.675 -1
-pick -1.675 1
-done
-Add Line
-setwindow FORM.mini
-FORM mini class PACKAGE GEOMETRY
 FORM mini subclass ASSEMBLY_TOP
-setwindow FORM.mini
-FORM mini line_width 0.1
-FORM mini lock_direction Off
-setwindow pcb
-pick -1 0.625
-pick 1 0.625
-done
-Add Line
-setwindow FORM.mini
-FORM mini class PACKAGE GEOMETRY
-FORM mini subclass ASSEMBLY_TOP
-setwindow FORM.mini
-FORM mini line_width 0.1
-FORM mini lock_direction Off
-setwindow pcb
-pick 1 0.625
-pick 1 -0.625
-done
-Add Line
-setwindow FORM.mini
-FORM mini class PACKAGE GEOMETRY
-FORM mini subclass ASSEMBLY_TOP
-setwindow FORM.mini
-FORM mini line_width 0.1
-FORM mini lock_direction Off
-setwindow pcb
-pick 1 -0.625
-pick -1 -0.625
-done
-Add Line
-setwindow FORM.mini
-FORM mini class PACKAGE GEOMETRY
-FORM mini subclass ASSEMBLY_TOP
-setwindow FORM.mini
-FORM mini line_width 0.1
-FORM mini lock_direction Off
-setwindow pcb
-pick -1 -0.625
-pick -1 0.625
-done
-Add Line
-setwindow FORM.mini
-FORM mini class PACKAGE GEOMETRY
-FORM mini subclass SILKSCREEN_TOP
 setwindow FORM.mini
 FORM mini line_width 0.2
 FORM mini lock_direction Off
 setwindow pcb
-pick 0 0.525
-pick 0 -0.525
+pick -0.8 0.4
+pick 0.8 0.4
+done
+Add Line
+setwindow FORM.mini
+FORM mini class PACKAGE GEOMETRY
+FORM mini subclass ASSEMBLY_TOP
+setwindow FORM.mini
+FORM mini line_width 0.2
+FORM mini lock_direction Off
+setwindow pcb
+pick 0.8 0.4
+pick 0.8 -0.4
+done
+Add Line
+setwindow FORM.mini
+FORM mini class PACKAGE GEOMETRY
+FORM mini subclass ASSEMBLY_TOP
+setwindow FORM.mini
+FORM mini line_width 0.2
+FORM mini lock_direction Off
+setwindow pcb
+pick 0.8 -0.4
+pick -0.8 -0.4
+done
+Add Line
+setwindow FORM.mini
+FORM mini class PACKAGE GEOMETRY
+FORM mini subclass ASSEMBLY_TOP
+setwindow FORM.mini
+FORM mini line_width 0.2
+FORM mini lock_direction Off
+setwindow pcb
+pick -0.8 -0.4
+pick -0.8 0.4
+done
+Add Line
+setwindow FORM.mini
+FORM mini class PACKAGE GEOMETRY
+FORM mini subclass PLACE_BOUND_TOP
+setwindow FORM.mini
+FORM mini line_width 0.05
+FORM mini lock_direction Off
+setwindow pcb
+pick -1.8 1.4
+pick 1.8 1.4
+done
+Add Line
+setwindow FORM.mini
+FORM mini class PACKAGE GEOMETRY
+FORM mini subclass PLACE_BOUND_TOP
+setwindow FORM.mini
+FORM mini line_width 0.05
+FORM mini lock_direction Off
+setwindow pcb
+pick 1.8 1.4
+pick 1.8 -1.4
+done
+Add Line
+setwindow FORM.mini
+FORM mini class PACKAGE GEOMETRY
+FORM mini subclass PLACE_BOUND_TOP
+setwindow FORM.mini
+FORM mini line_width 0.05
+FORM mini lock_direction Off
+setwindow pcb
+pick 1.8 -1.4
+pick -1.8 -1.4
+done
+Add Line
+setwindow FORM.mini
+FORM mini class PACKAGE GEOMETRY
+FORM mini subclass PLACE_BOUND_TOP
+setwindow FORM.mini
+FORM mini line_width 0.05
+FORM mini lock_direction Off
+setwindow pcb
+pick -1.8 -1.4
+pick -1.8 1.4
 done
 Create Symbol
-fillin "RESC2012X65N"
+fillin "ERJUP3"
 setwindow pcb
 trapsize 503
 dbdoctor
@@ -265,6 +254,6 @@ FORM dbdoctor_allegro shapes YES
 FORM dbdoctor_allegro execute
 setwindow pcb
 save_as
-fillin "RESC2012X65N"
+fillin "ERJUP3"
 setwindow pcb
 #exit
