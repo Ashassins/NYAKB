@@ -41,6 +41,7 @@
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c3;
 
+TIM_HandleTypeDef htim6;
 TIM_HandleTypeDef htim7;
 
 PCD_HandleTypeDef hpcd_USB_OTG_HS;
@@ -93,6 +94,7 @@ static void MX_GPIO_Init(void);
 static void MX_I2C3_Init(void);
 static void MX_USB_OTG_HS_PCD_Init(void);
 static void MX_TIM7_Init(void);
+static void MX_TIM6_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -207,8 +209,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C3_Init();
-  /* MX_USB_OTG_HS_PCD_Init(); */
+  MX_USB_OTG_HS_PCD_Init();
   MX_TIM7_Init();
+  MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
   UserLedInit();
   LED4_Off();
@@ -303,6 +306,44 @@ static void MX_I2C3_Init(void)
   /* USER CODE BEGIN I2C3_Init 2 */
 
   /* USER CODE END I2C3_Init 2 */
+
+}
+
+/**
+  * @brief TIM6 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM6_Init(void)
+{
+
+  /* USER CODE BEGIN TIM6_Init 0 */
+
+  /* USER CODE END TIM6_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM6_Init 1 */
+
+  /* USER CODE END TIM6_Init 1 */
+  htim6.Instance = TIM6;
+  htim6.Init.Prescaler = 167;
+  htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim6.Init.Period = 999;
+  htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM6_Init 2 */
+
+  /* USER CODE END TIM6_Init 2 */
 
 }
 
@@ -404,6 +445,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+  if (htim == &htim6) {
+	int rows = read_rows();
+	update_history(col, rows);
+	col = (col + 1) & 3;
+	drive_column(col);
+	get_keypress();
+  }
   if (htim == &htim7) {
     uint8_t rcv_data;
     HAL_I2C_Master_Receive(&hi2c3, SCREEN_PERIPH_ADDR, &rcv_data, 1,
@@ -416,12 +464,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
 void enable_ports(void) {
   // Enable RCC to GPIOB and GPIOC
-  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;//RCC_AHBENR_GPIOBEN;
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;//RCC_AHBENR_GPIOEEN;
   RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;//RCC_AHBENR_GPIOCEN;
 
-  // GPIOB PB0-10 Outputs
-  GPIOB->MODER &= ~0x3FFFFF; // Clear PB0-10
-  GPIOB->MODER |= 0x155555;
+  // GPIOE PE0-10 Outputs
+  GPIOE->MODER &= ~0x3FFFFF; // Clear PB0-10
+  GPIOE->MODER |= 0x155555;
 
   // GPIOC PC4-7 Outputs
   GPIOC->MODER &= ~0xFF00;
@@ -432,55 +480,6 @@ void enable_ports(void) {
   // GPIOC PC0-3 Pull Down
   GPIOC->PUPDR &= ~0xFF;
   GPIOC->PUPDR |= 0xAA;
-}
-
-//===========================================================================
-// Configuring DMA transfers
-//===========================================================================
-uint16_t msg[8] = { 0x0000,0x0100,0x0200,0x0300,0x0400,0x0500,0x0600,0x0700 };
-extern const char font[];
-
-void setup_dma(void) {
-	// Enable RCC to DMA
-	// need to use a stream number 0-7 for DMA_SxCR
-	// need to change these constants
-	RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN; // DMA 1 EN on 21
-	DMA1_Stream2->CR &= ~DMA_SxCR_EN;	// Turn off DMA Channel before config
-	DMA1_Stream2->PAR = (uint32_t) &(GPIOB->ODR); //hmmmm
-	DMA1_Stream2->M0AR = (uint32_t) msg; // memeory 0 addr?
-//	DMA1_Stream2->S2M1AR = (uint32_t) msg; // memmory 1 addr?
-	DMA1_Stream2->NDTR = 8;
-	DMA1_Stream2->CR |= DMA_SxCR_DIR;
-	DMA1_Stream2->CR |= DMA_SxCR_MINC;
-	DMA1_Stream2->CR |= DMA_SxCR_MSIZE_0;
-	DMA1_Stream2->CR |= DMA_SxCR_PSIZE_0;
-	DMA1_Stream2->CR |= DMA_SxCR_CIRC;
-}
-
-void enable_dma(void) {
-	// Enable DMA
-	DMA1_Stream2->S2CR |= DMA_SxCR_EN;
-}
-
-void init_tim2(void) {
-	// Enable RCC to tim2
-	RCC->APB1ENR |= 0x1; //TIM2EN on 0
-	// Set PSC to 12000-1 and ARR to 4-1
-	TIM2->PSC = 12000-1;
-	TIM2->ARR = 4-1;
-	// Enable UDE in DIER
-	TIM2->DIER |= TIM_DIER_UDE;
-	// Enable CEN bit in Tim2
-	TIM2->CR1 |= TIM_CR1_CEN;
-}
-
-void append_display(char val) {
-	for (int i = 1; i < sizeof(msg); i++) {
-		msg[i-1] &= ~0xff;
-		msg[i-1] |= (msg[i] & 0xff);
-	}
-	msg[7] &= ~0xff;
-	msg[7] |= val;
 }
 
 //===========================================================================
@@ -525,22 +524,13 @@ void update_history(int c, int rows)
   }
 }
 
-void init_tim6() {
-  RCC->APB1ENR |= RCC_APB1ENR_TIM6EN; // on 4
-  TIM6->PSC = 48 - 1; //double this
-  TIM6->ARR = 1000 - 1;
-  TIM6->DIER |= TIM_DIER_UIE;
-  TIM6->CR1 |= TIM_CR1_CEN;
-  NVIC->ISER[0] |= 1 << TIM6_DAC_IRQn;
-}
-
-void TIM6_DAC_IRQHandler(void) {
-  TIM6->SR &= ~TIM_SR_UIF;
-  int rows = read_rows();
-  update_history(col, rows);
-  col = (col + 1) & 3;
-  drive_column(col);
-}
+//void TIM6_DAC_IRQHandler(void) {
+//  TIM6->SR &= ~TIM_SR_UIF;
+//  int rows = read_rows();
+//  update_history(col, rows);
+//  col = (col + 1) & 3;
+//  drive_column(col);
+//}
 
 char get_keypress() {
   for(;;) {
