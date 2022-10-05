@@ -1,0 +1,9 @@
+Manufacturer=Bourns
+PartNumber=CRT0805-FZ-1001ELF
+PartCategory=Resistor
+PackageCategory=Resistor Chip
+PinCount=2
+Version=1.1
+Released=2022-04-07 04:44:55
+Downloaded=2022-10-05 00:52:12
+3D=Y

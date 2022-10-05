@@ -1,0 +1,9 @@
+Manufacturer=KEMET
+PartNumber=C0805C226K7PAC7800
+PartCategory=Capacitor
+PackageCategory=Capacitor Chip Non-polarised
+PinCount=2
+Version=1.2
+Released=2022-02-01 09:03:15
+Downloaded=2022-10-04 16:58:57
+3D=Y

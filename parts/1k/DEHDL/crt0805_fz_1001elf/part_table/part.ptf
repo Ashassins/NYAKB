@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'CRT0805_FZ_1001ELF'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Bourns", "CRT0805-FZ-1001ELF" (!) = "", "RESC2012X65N", "Resistor Chip", "652-CRT0805FZ1001ELF", "https://www.mouser.co.uk/ProductDetail/Bourns/CRT0805-FZ-1001ELF?qs=zVPOhnWuw8XKnszaWxnxVA%3D%3D", "Thin Film Resistors - SMD ResThinFilm 0805 1k 1% 125mW TC50", "", "0.65 mm"
+END_PART
+
+END.

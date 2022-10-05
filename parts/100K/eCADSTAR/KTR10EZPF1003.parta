@@ -1,0 +1,70 @@
+(Japanese_coding: sjis)
+(function "ECS_1185409"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2018-04-16-11:18:30)
+    (utime 2021-10-25-09:45:02)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "KTR10EZPF1003")
+)
+
+
+(pinAssign "ECS_1185409"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2018-04-16-11:18:30)
+    (utime 2021-10-25-09:45:02)
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_1185409")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "KTR10EZPF1003")
+)
+
+
+(part "KTR10EZPF1003"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2018-04-16-11:18:30)
+    (utime 2021-10-25-09:45:02)
+    (packageRef "KTR10EZPF1003")
+    (pinAssignRef "ECS_1185409")
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "NO")
+    (property "refDesPrefix" "R")
+    (property "description" "Thick Film Resistors - SMD 0805 100Kohm 1% High VoltageAEC-Q200")
+    (property "Manufacturer_Name" "ROHM Semiconductor")
+    (property "Manufacturer_Part_Number" "KTR10EZPF1003")
+    (property "Mouser_Part_Number" "755-KTR10EZPF1003")
+    (property "Mouser_Price/Stock" "https://www.mouser.com/Search/Refine.aspx?Keyword=755-KTR10EZPF1003")
+    (property "Arrow_Part_Number" "")
+    (property "Arrow_Price/Stock" "")
+    (property "Mouser_Testing_Part_Number" "")
+    (property "Mouser_Testing_Price/Stock" "")
+    (property "Datasheet_Link" "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets_SAMA/e2f1c7f0b3c549e70fed117c8f559ad0.pdf")
+    (property "compAreaTopHeight" 0.65)
+)
+
+

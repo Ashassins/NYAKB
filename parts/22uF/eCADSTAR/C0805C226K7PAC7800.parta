@@ -1,0 +1,70 @@
+(Japanese_coding: sjis)
+(function "ECS_5352514"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-02-01-09:03:15)
+    (utime 2022-02-02-06:31:24)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "C0805C226K7PAC7800")
+)
+
+
+(pinAssign "ECS_5352514"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-02-01-09:03:15)
+    (utime 2022-02-02-06:31:24)
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_5352514")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "C0805C226K7PAC7800")
+)
+
+
+(part "C0805C226K7PAC7800"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-02-01-09:03:15)
+    (utime 2022-02-02-06:31:24)
+    (packageRef "C0805C226K7PAC7800")
+    (pinAssignRef "ECS_5352514")
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "NO")
+    (property "refDesPrefix" "C")
+    (property "description" "CAP CER 22UF 4V X5R 0805")
+    (property "Manufacturer_Name" "KEMET")
+    (property "Manufacturer_Part_Number" "C0805C226K7PAC7800")
+    (property "Mouser_Part_Number" "")
+    (property "Mouser_Price/Stock" "")
+    (property "Arrow_Part_Number" "")
+    (property "Arrow_Price/Stock" "")
+    (property "Mouser_Testing_Part_Number" "")
+    (property "Mouser_Testing_Price/Stock" "")
+    (property "Datasheet_Link" "https://connect.kemet.com:7667/gateway/IntelliData-ComponentDocumentation/1.0/download/specsheet/C0805C226K7PACTU")
+    (property "compAreaTopHeight" 1.4)
+)
+
+

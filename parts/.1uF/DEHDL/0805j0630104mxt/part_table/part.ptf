@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART '0805J0630104MXT'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "ARROW_PART_NUMBER", "ARROW_PRICE/STOCK", "MOUSER_TESTING_PART_NUMBER", "MOUSER_TESTING_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Syfer", "0805J0630104MXT" (!) = "", "CAPC2012X130N", "Capacitor Chip Non-polarised", "", "", "0805J0630104MXT", "https://www.arrow.com/en/products/0805j0630104mxt/syfer-technology?region=europe", "", "", "Syfer 0805 Ceramic Chip Capacitors", "http://docs-europe.electrocomponents.com/webdocs/119d/0900766b8119d7bc.pdf", "1.3 mm"
+END_PART
+
+END.

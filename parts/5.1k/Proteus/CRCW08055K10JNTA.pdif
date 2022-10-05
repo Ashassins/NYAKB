@@ -1,0 +1,95 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "CRCW08055K10JNTA"
+   (description "Thick Film Resistors - SMD 1/8watt 5.1Kohms 5%")
+   (family "RES")
+   (package "RESC2012X50N")
+   (attribute "Datasheet Link" "http://www.vishay.com/docs/20035/dcrcwe3.pdf")
+   (attribute "Geometry.Height" "0.5mm")
+   (attribute "Manufacturer_Name" "Vishay")
+   (attribute "Manufacturer_Part_Number" "CRCW08055K10JNTA")
+   (attribute "Mouser Part Number" "71-CRCW0805J-5.1K")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Vishay-Dale/CRCW08055K10JNTA?qs=6qITVgVHXN0SqVxHiTNoUQ%3D%3D")
+   (attribute "Arrow Part Number" "CRCW08055K10JNTA")
+   (attribute "Arrow Price/Stock" "https://www.arrow.com/en/products/crcw08055k10jnta/vishay?region=nac")
+   (attribute "Mouser Testing Part Number" "")
+   (attribute "Mouser Testing Price/Stock" "")
+   (gate
+    (symbol "CRCW08055K10JNTA")
+    (pin "1" 1 PS)
+    (pin "2" 2 PS)
+   )
+  )
+  (symbol "CRCW08055K10JNTA"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 50) (pt 500 50) (pt 500 -50) (pt 200 -50) (pt 200 50) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 0 -10) (rot 0) (just TOP LEFT) (visible false))
+    (number (pt 0 10) (rot 0) (just BOTTOM LEFT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 700 0) (rot 0) (mir X) (visible true))
+    (name (pt 0 -10) (rot 0) (just TOP LEFT) (visible false))
+    (number (pt 0 10) (rot 0) (just BOTTOM LEFT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "RESC2012X50N"
+   (units MM)
+   (layer OCCA
+    (graphic
+     (stroke 0.05)
+     (path
+      (closed true)
+      (pt -1.725 1)
+      (pt 1.725 1)
+      (pt 1.725 -1)
+      (pt -1.725 -1)
+      (pt -1.725 1))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -1.025 0.625)
+      (pt 1.025 0.625)
+      (pt 1.025 -0.625)
+      (pt -1.025 -0.625)
+      (pt -1.025 0.625))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt 0 0.525)
+      (pt 0 -0.525))))
+   (leg 1 (pt -1 0) (padstack 0))
+   (leg 2 (pt 1 0) (padstack 0))
+   (padstack 0
+    (plated false)
+    (pad (layer TCOP) (rectf 0.95 1.45 0 0 90))
+   )
+   (model "CRCW08055K10JNTA.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)

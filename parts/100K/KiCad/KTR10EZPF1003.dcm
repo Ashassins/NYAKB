@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP KTR10EZPF1003
+D Thick Film Resistors - SMD 0805 100Kohm 1% High VoltageAEC-Q200
+K
+F https://datasheet.datasheetarchive.com/originals/distributors/Datasheets_SAMA/e2f1c7f0b3c549e70fed117c8f559ad0.pdf
+$ENDCMP
+#
+#End Doc Library

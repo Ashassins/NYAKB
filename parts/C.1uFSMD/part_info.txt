@@ -1,9 +1,0 @@
-Manufacturer=KEMET
-PartNumber=CKC21C104KDGLC7805
-PartCategory=Capacitor
-PackageCategory=Capacitor Chip Non-polarised
-PinCount=2
-Version=1.1
-Released=2022-08-22 14:24:50
-Downloaded=2022-09-27 02:09:52
-3D=Y

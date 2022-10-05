@@ -1,0 +1,9 @@
+Manufacturer=ROHM Semiconductor
+PartNumber=KTR10EZPF1003
+PartCategory=Resistor
+PackageCategory=Resistor Chip
+PinCount=2
+Version=1.1
+Released=2018-04-16 11:18:30
+Downloaded=2022-10-04 17:04:35
+3D=Y

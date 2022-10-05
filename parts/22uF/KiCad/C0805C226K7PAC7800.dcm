@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP C0805C226K7PAC7800
+D CAP CER 22UF 4V X5R 0805
+K
+F https://connect.kemet.com:7667/gateway/IntelliData-ComponentDocumentation/1.0/download/specsheet/C0805C226K7PACTU
+$ENDCMP
+#
+#End Doc Library

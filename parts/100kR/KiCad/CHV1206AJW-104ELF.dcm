@@ -1,9 +1,0 @@
-EESchema-DOCLIB  Version 2.0
-#
-$CMP CHV1206AJW-104ELF
-D ResHV A 1206 100k 5% 0.25W TCR200
-K
-F https://www.bourns.com/docs/Product-Datasheets/CHV.pdf
-$ENDCMP
-#
-#End Doc Library

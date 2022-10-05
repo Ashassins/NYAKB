@@ -1,9 +1,0 @@
-EESchema-DOCLIB  Version 2.0
-#
-$CMP ERJ-UP3D1001V
-D Anti-Sulfurated Thick Film Chip Resistors/ Anti-Surge Type, Power Rating (W): 0.25, Chip Size (LxW(EIA)) (mm): 1.6 x 0.8 (EIA:0603), Resistance Values (?): 1000, Resistance Tolerance (%): 0.5, T.C.R (?102/K): ?100
-K
-F https://industrial.panasonic.com/cdbs/www-data/pdf/RDP0000/AOA0000C337.pdf
-$ENDCMP
-#
-#End Doc Library

@@ -1,0 +1,70 @@
+(Japanese_coding: sjis)
+(function "ECS_16997706"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-09-23-07:45:01)
+    (utime 2022-09-23-07:45:01)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "0805J0630104MXT")
+)
+
+
+(pinAssign "ECS_16997706"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-09-23-07:45:01)
+    (utime 2022-09-23-07:45:01)
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_16997706")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "0805J0630104MXT")
+)
+
+
+(part "0805J0630104MXT"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-09-23-07:45:01)
+    (utime 2022-09-23-07:45:01)
+    (packageRef "0805J0630104MXT")
+    (pinAssignRef "ECS_16997706")
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "NO")
+    (property "refDesPrefix" "C")
+    (property "description" "Syfer 0805 Ceramic Chip Capacitors")
+    (property "Manufacturer_Name" "Syfer")
+    (property "Manufacturer_Part_Number" "0805J0630104MXT")
+    (property "Mouser_Part_Number" "")
+    (property "Mouser_Price/Stock" "")
+    (property "Arrow_Part_Number" "0805J0630104MXT")
+    (property "Arrow_Price/Stock" "https://www.arrow.com/en/products/0805j0630104mxt/syfer-technology?region=europe")
+    (property "Mouser_Testing_Part_Number" "")
+    (property "Mouser_Testing_Price/Stock" "")
+    (property "Datasheet_Link" "http://docs-europe.electrocomponents.com/webdocs/119d/0900766b8119d7bc.pdf")
+    (property "compAreaTopHeight" 1.3)
+)
+
+

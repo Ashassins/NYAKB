@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'KTR10EZPJ100'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "ARROW_PART_NUMBER", "ARROW_PRICE/STOCK", "MOUSER_TESTING_PART_NUMBER", "MOUSER_TESTING_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "ROHM Semiconductor", "KTR10EZPJ100" (!) = "", "RESC2012X65N", "Resistor Chip", "755-KTR10EZPJ100", "https://www.mouser.com/Search/Refine.aspx?Keyword=755-KTR10EZPJ100", "", "", "", "", "Thick Film Resistors - SMD 0805 10ohm 5% High VoltageAEC-Q200", "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets_SAMA/e2f1c7f0b3c549e70fed117c8f559ad0.pdf", "0.65 mm"
+END_PART
+
+END.

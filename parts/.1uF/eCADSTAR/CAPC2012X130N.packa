@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "0805J0630104MXT"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2018-06-06-11:10:45)
+    (mountForm default
+        (footprintRef "CAPC2012X130N")
+        (spec "System")
+    )
+)

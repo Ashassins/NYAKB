@@ -1,9 +1,0 @@
-Manufacturer=Panasonic
-PartNumber=ERJ-UP3D1001V
-PartCategory=Resistor
-PackageCategory=Other
-PinCount=2
-Version=2.1
-Released=2020-07-20 15:51:27
-Downloaded=2022-10-04 01:05:31
-3D=Y
