@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "TMK212BBJ106MG-T"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2019-07-06-12:27:44)
+    (mountForm default
+        (footprintRef "CAPC2012X145N")
+        (spec "System")
+    )
+)

@@ -1,0 +1,66 @@
+(Japanese_coding: sjis)
+(function "ECS_849157"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2019-12-27-06:40:10)
+    (utime 2022-04-28-06:27:08)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "TMK212BBJ106MG-T")
+)
+
+
+(pinAssign "ECS_849157"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2019-12-27-06:40:10)
+    (utime 2022-04-28-06:27:08)
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_849157")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "TMK212BBJ106MG-T")
+)
+
+
+(part "TMK212BBJ106MG-T"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2019-12-27-06:40:10)
+    (utime 2022-04-28-06:27:08)
+    (packageRef "TMK212BBJ106MG-T")
+    (pinAssignRef "ECS_849157")
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "NO")
+    (property "refDesPrefix" "C")
+    (property "description" "0805 (2012M) 10uF MLCC 25V dc +/-20% SMD TMK212BBJ106MG-T")
+    (property "Mouser_Part_Number" "963-TMK212BBJ106MG-T")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/Taiyo-Yuden/TMK212BBJ106MG-T?qs=lkMpTOwszhd%2F%252Bg1AlFV9dw%3D%3D")
+    (property "Manufacturer_Name" "TAIYO YUDEN")
+    (property "Manufacturer_Part_Number" "TMK212BBJ106MG-T")
+    (property "Datasheet_Link" "https://ds.yuden.co.jp/TYCOMPAS/ut/download?pn=LMK063BBJ474MPLF&fileType=CA")
+    (property "compAreaTopHeight" 1.45)
+)
+
+
