@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'TMK212BBJ106MG_T'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "TAIYO YUDEN", "TMK212BBJ106MG-T" (!) = "", "CAPC2012X145N", "Capacitor Chip Non-polarised", "963-TMK212BBJ106MG-T", "https://www.mouser.co.uk/ProductDetail/Taiyo-Yuden/TMK212BBJ106MG-T?qs=lkMpTOwszhd%2F%252Bg1AlFV9dw%3D%3D", "0805 (2012M) 10uF MLCC 25V dc +/-20% SMD TMK212BBJ106MG-T", "https://ds.yuden.co.jp/TYCOMPAS/ut/download?pn=LMK063BBJ474MPLF&fileType=CA", "1.45 mm"
+END_PART
+
+END.

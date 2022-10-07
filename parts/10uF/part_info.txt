@@ -1,0 +1,9 @@
+Manufacturer=TAIYO YUDEN
+PartNumber=TMK212BBJ106MG-T
+PartCategory=Capacitor
+PackageCategory=Capacitor Chip Non-polarised
+PinCount=2
+Version=2.1
+Released=2019-12-27 06:40:10
+Downloaded=2022-10-07 19:58:32
+3D=Y

@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP TMK212BBJ106MG-T
+D 0805 (2012M) 10uF MLCC 25V dc +/-20% SMD TMK212BBJ106MG-T
+K
+F https://ds.yuden.co.jp/TYCOMPAS/ut/download?pn=LMK063BBJ474MPLF&fileType=CA
+$ENDCMP
+#
+#End Doc Library

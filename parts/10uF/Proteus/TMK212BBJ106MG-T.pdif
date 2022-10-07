@@ -1,0 +1,96 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "TMK212BBJ106MG-T"
+   (description "0805 (2012M) 10uF MLCC 25V dc +/-20% SMD TMK212BBJ106MG-T")
+   (family "CAP")
+   (package "CAPC2012X145N")
+   (attribute "Datasheet Link" "https://ds.yuden.co.jp/TYCOMPAS/ut/download?pn=LMK063BBJ474MPLF&fileType=CA")
+   (attribute "Geometry.Height" "1.45mm")
+   (attribute "Mouser Part Number" "963-TMK212BBJ106MG-T")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Taiyo-Yuden/TMK212BBJ106MG-T?qs=lkMpTOwszhd%2F%252Bg1AlFV9dw%3D%3D")
+   (attribute "Manufacturer_Name" "TAIYO YUDEN")
+   (attribute "Manufacturer_Part_Number" "TMK212BBJ106MG-T")
+   (gate
+    (symbol "TMK212BBJ106MG-T")
+    (pin "1" 1 PS)
+    (pin "2" 2 PS)
+   )
+  )
+  (symbol "TMK212BBJ106MG-T"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 220 100) (pt 220 -100))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 280 100) (pt 280 -100))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 200 0) (pt 220 0))
+   )
+   (graphic
+    (stroke 10)
+    (path (pt 280 0) (pt 300 0))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 0 -10) (rot 0) (just TOP LEFT) (visible false))
+    (number (pt 0 10) (rot 0) (just BOTTOM LEFT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 500 0) (rot 0) (mir X) (visible true))
+    (name (pt 0 -10) (rot 0) (just TOP LEFT) (visible false))
+    (number (pt 0 10) (rot 0) (just BOTTOM LEFT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "CAPC2012X145N"
+   (units MM)
+   (layer OCCA
+    (graphic
+     (stroke 0.05)
+     (path
+      (closed true)
+      (pt -1.42 0.85)
+      (pt 1.42 0.85)
+      (pt 1.42 -0.85)
+      (pt -1.42 -0.85)
+      (pt -1.42 0.85))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -1 0.625)
+      (pt 1 0.625)
+      (pt 1 -0.625)
+      (pt -1 -0.625)
+      (pt -1 0.625))))
+   (leg 1 (pt -0.79 0) (padstack 0))
+   (leg 2 (pt 0.79 0) (padstack 0))
+   (padstack 0
+    (plated false)
+    (pad (layer TCOP) (rectf 0.96 1.39 0 0 90))
+   )
+   (model "TMK212BBJ106MG-T.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)
