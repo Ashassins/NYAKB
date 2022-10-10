@@ -2917,7 +2917,7 @@
   )
 
   (symbol (lib_id "power:+3V0") (at 240.03 86.36 0) (unit 1)
-    (in_bom yes) (on_board yes) (fields_autoplaced)
+    (in_bom yes) (on_board yes)
     (uuid 75970833-81d6-4f1c-b45a-02e6bbded237)
     (property "Reference" "#PWR0114" (id 0) (at 240.03 90.17 0)
       (effects (font (size 1.27 1.27)) hide)
