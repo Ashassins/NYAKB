@@ -1,12 +1,12 @@
 %TF.GenerationSoftware,KiCad,Pcbnew,6.0.2+dfsg-1*%
-%TF.CreationDate,2022-10-18T15:50:55-04:00*%
+%TF.CreationDate,2022-10-18T15:59:08-04:00*%
 %TF.ProjectId,main-keyboard-pcb,6d61696e-2d6b-4657-9962-6f6172642d70,1.0*%
 %TF.SameCoordinates,Original*%
 %TF.FileFunction,Paste,Bot*%
 %TF.FilePolarity,Positive*%
 %FSLAX46Y46*%
 G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
-G04 Created by KiCad (PCBNEW 6.0.2+dfsg-1) date 2022-10-18 15:50:55*
+G04 Created by KiCad (PCBNEW 6.0.2+dfsg-1) date 2022-10-18 15:59:08*
 %MOMM*%
 %LPD*%
 G01*
@@ -723,8 +723,8 @@ X183388000Y-83936000D03*
 %TD*%
 D18*
 %TO.C,C11*%
-X196850000Y-98336000D03*
-X196850000Y-96736000D03*
+X196596000Y-98336000D03*
+X196596000Y-96736000D03*
 %TD*%
 D16*
 %TO.C,D63*%
@@ -750,8 +750,8 @@ X262566879Y-139271708D03*
 %TD*%
 D17*
 %TO.C,C10*%
-X187528000Y-98044000D03*
-X185928000Y-98044000D03*
+X187528000Y-97536000D03*
+X185928000Y-97536000D03*
 %TD*%
 D14*
 %TO.C,D20*%
