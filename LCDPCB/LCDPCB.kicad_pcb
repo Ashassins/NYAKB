@@ -89,7 +89,7 @@
       (mirror false)
       (drillshape 0)
       (scaleselection 1)
-      (outputdirectory "gerber")
+      (outputdirectory "lcdgerber")
     )
   )
 
@@ -666,7 +666,7 @@
     (property "Sheetname" "")
     (path "/be327ca8-c2e7-4e54-b1ea-13988892d11e")
     (attr through_hole)
-    (fp_text reference "J1" (at -0.533 -2.52 90) (layer "F.SilkS")
+    (fp_text reference "J1" (at -1.285 -3 90) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp b129e621-b89c-40c5-8b82-bdc29ebd51a4)
     )
