@@ -71,7 +71,7 @@
       (plotframeref false)
       (viasonmask true)
       (mode 1)
-      (useauxorigin false)
+      (useauxorigin true)
       (hpglpennumber 1)
       (hpglpenspeed 20)
       (hpglpendiameter 15.000000)
@@ -432,7 +432,7 @@
 
   (footprint "LOGO" (layer "F.Cu")
     (tedit 0) (tstamp 2baa7aea-8872-499e-8fc3-c32c52628206)
-    (at 126.0856 70.612)
+    (at 129.413 68.199)
     (attr board_only exclude_from_pos_files exclude_from_bom)
     (fp_text reference "G***" (at 0 0) (layer "F.SilkS") hide
       (effects (font (size 1.524 1.524) (thickness 0.3)))
