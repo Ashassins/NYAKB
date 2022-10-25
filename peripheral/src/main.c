@@ -10,6 +10,7 @@
 
 #include "stm32f0xx.h"
 #include <stdint.h>
+#include "lcd.h"
 
 char haz_press = 0;
 
@@ -34,7 +35,6 @@ void initI2CPeripheral(void) {
 
   NVIC_EnableIRQ((IRQn_Type)I2C1_IRQn);
   NVIC_SetPriority((IRQn_Type)I2C1_IRQn, 2);
-  /* NVIC->ISER[0] = 1 << I2C1_IRQn; */
 }
 
 void initLED(void) {
@@ -94,7 +94,9 @@ int main(void) {
   initLED();
   initEXTI();
   toggleLED();
-
+  LCD_Setup();
+  LCD_Clear(BLACK);
+  LCD_DrawString(60, 170, WHITE, 0x00, "HELLO, WORLD!", 16, 1);
   for (;;) {
     asm("nop");
   }
