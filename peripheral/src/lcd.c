@@ -196,7 +196,7 @@ void LCD_Init(void (*reset)(int), void (*select)(int), void (*reg_select)(int)) 
   lcddev.select(1);
   LCD_Reset();
   // Initialization sequence for 2.2inch ILI9341
-  LCD_WR_REG(0xCF);
+  /*LCD_WR_REG(0xCF);
   LCD_WR_DATA(0x00);
   LCD_WR_DATA(0xD9); // C1
   LCD_WR_DATA(0X30);
@@ -289,9 +289,91 @@ void LCD_Init(void (*reset)(int), void (*select)(int), void (*reg_select)(int)) 
   LCD_WR_REG(0x11);     // Exit Sleep
   nano_wait(120000000); // Wait 120 ms
   LCD_WR_REG(0x29);     // Display on
+*/
+  LCD_WR_REG(0xE0);
+    LCD_WR_DATA(0x00);
+    LCD_WR_DATA(0x03);
+    LCD_WR_DATA(0x09);
+    LCD_WR_DATA(0x08);
+    LCD_WR_DATA(0x16);
+    LCD_WR_DATA(0x0A);
+    LCD_WR_DATA(0x3F);
+    LCD_WR_DATA(0x78);
+    LCD_WR_DATA(0x4C);
+    LCD_WR_DATA(0x09);
+    LCD_WR_DATA(0x0A);
+    LCD_WR_DATA(0x08);
+    LCD_WR_DATA(0x16);
+    LCD_WR_DATA(0x1A);
+    LCD_WR_DATA(0x0F);
+
+
+    LCD_WR_REG(0XE1);
+    LCD_WR_DATA(0x00);
+    LCD_WR_DATA(0x16);
+    LCD_WR_DATA(0x19);
+    LCD_WR_DATA(0x03);
+    LCD_WR_DATA(0x0F);
+    LCD_WR_DATA(0x05);
+    LCD_WR_DATA(0x32);
+    LCD_WR_DATA(0x45);
+    LCD_WR_DATA(0x46);
+    LCD_WR_DATA(0x04);
+    LCD_WR_DATA(0x0E);
+    LCD_WR_DATA(0x0D);
+    LCD_WR_DATA(0x35);
+    LCD_WR_DATA(0x37);
+    LCD_WR_DATA(0x0F);
+
+
+
+    LCD_WR_REG(0XC0);      //Power Control 1
+    LCD_WR_DATA(0x17);    //Vreg1out
+    LCD_WR_DATA(0x15);    //Verg2out
+
+    LCD_WR_REG(0xC1);      //Power Control 2
+    LCD_WR_DATA(0x41);    //VGH,VGL
+
+    LCD_WR_REG(0xC5);      //Power Control 3
+    LCD_WR_DATA(0x00);
+    LCD_WR_DATA(0x12);    //Vcom
+    LCD_WR_DATA(0x80);
+
+    LCD_WR_REG(0x36);      //Memory Access
+    LCD_WR_DATA(0x48);
+
+    LCD_WR_REG(0x3A);      // Interface Pixel Format
+    LCD_WR_DATA(0x66);      //18 bit
+
+    LCD_WR_REG(0XB0);      // Interface Mode Control
+    LCD_WR_DATA(0x80);                 //SDO NOT USE
+
+    LCD_WR_REG(0xB1);      //Frame rate
+    LCD_WR_DATA(0xA0);    //60Hz
+
+    LCD_WR_REG(0xB4);      //Display Inversion Control
+    LCD_WR_DATA(0x02);    //2-dot
+
+    LCD_WR_REG(0XB6);      //Display Function Control  RGB/MCU Interface Control
+
+    LCD_WR_DATA(0x02);    //MCU
+    LCD_WR_DATA(0x02);    //Source,Gate scan direction
+
+    LCD_WR_REG(0XE9);      // Set Image Function
+    LCD_WR_DATA(0x00);    // Disable 24 bit data
+
+    LCD_WR_REG(0xF7);      // Adjust Control
+    LCD_WR_DATA(0xA9);
+    LCD_WR_DATA(0x51);
+    LCD_WR_DATA(0x2C);
+    LCD_WR_DATA(0x82);    // D7 stream, loose
+    LCD_WR_REG(0x11);     // Exit Sleep
+    nano_wait(120000000); // Wait 120 ms
+    LCD_WR_REG(0x29);     // Display on
 
   LCD_direction(USE_HORIZONTAL);
   lcddev.select(0);
+
 }
 
 void init_spi1_slow(void) {

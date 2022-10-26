@@ -40,7 +40,7 @@ extern lcd_dev_t lcddev;
 #define USE_HORIZONTAL       0
 
 // The dimensions of the display.
-#define LCD_W 240
+#define LCD_W 480
 #define LCD_H 320
 
 // Some popular colors
