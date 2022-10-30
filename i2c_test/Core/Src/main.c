@@ -41,11 +41,51 @@
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c3;
 
+TIM_HandleTypeDef htim6;
 TIM_HandleTypeDef htim7;
 
 PCD_HandleTypeDef hpcd_USB_OTG_HS;
 
 /* USER CODE BEGIN PV */
+//const char keymap[] = "DCBA#9630852*741";
+const char font[] = {
+  0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+  0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+  0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+  0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+  0x00, // 32: space
+  0x86, // 33: exclamation
+  0x22, // 34: double quote
+  0x76, // 35: octothorpe
+  0x00, // dollar
+  0x00, // percent
+  0x00, // ampersand
+  0x20, // 39: single quote
+  0x39, // 40: open paren
+  0x0f, // 41: close paren
+  0x49, // 42: asterisk
+  0x00, // plus
+  0x10, // 44: comma
+  0x40, // 45: minus
+  0x80, // 46: period
+  0x00, // slash
+  // digits
+  0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x67,
+  // seven unknown
+  0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+  // Uppercase
+  0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71, 0x6f, 0x76, 0x30, 0x1e, 0x00, 0x38, 0x00,
+  0x37, 0x3f, 0x73, 0x7b, 0x31, 0x6d, 0x78, 0x3e, 0x00, 0x00, 0x00, 0x6e, 0x00,
+  0x39, // 91: open square bracket
+  0x00, // backslash
+  0x0f, // 93: close square bracket
+  0x00, // circumflex
+  0x08, // 95: underscore
+  0x20, // 96: backquote
+  // Lowercase
+  0x5f, 0x7c, 0x58, 0x5e, 0x79, 0x71, 0x6f, 0x74, 0x10, 0x0e, 0x00, 0x30, 0x00,
+  0x54, 0x5c, 0x73, 0x7b, 0x50, 0x6d, 0x78, 0x1c, 0x00, 0x00, 0x00, 0x6e, 0x00
+};
 
 /* USER CODE END PV */
 
@@ -55,6 +95,7 @@ static void MX_GPIO_Init(void);
 static void MX_I2C3_Init(void);
 static void MX_USB_OTG_HS_PCD_Init(void);
 static void MX_TIM7_Init(void);
+static void MX_TIM6_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -164,8 +205,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C3_Init();
-  /* MX_USB_OTG_HS_PCD_Init(); */
+  MX_USB_OTG_HS_PCD_Init();
   MX_TIM7_Init();
+  MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
   UserLedInit();
   LED4_Off();
@@ -264,6 +306,44 @@ static void MX_I2C3_Init(void)
 }
 
 /**
+  * @brief TIM6 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM6_Init(void)
+{
+
+  /* USER CODE BEGIN TIM6_Init 0 */
+
+  /* USER CODE END TIM6_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM6_Init 1 */
+
+  /* USER CODE END TIM6_Init 1 */
+  htim6.Instance = TIM6;
+  htim6.Init.Prescaler = 167;
+  htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim6.Init.Period = 999;
+  htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM6_Init 2 */
+
+  /* USER CODE END TIM6_Init 2 */
+
+}
+
+/**
   * @brief TIM7 Initialization Function
   * @param None
   * @retval None
@@ -353,6 +433,66 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+//===========================================================================
+// Debouncing a Keypad
+//===========================================================================
+const char keymap[] = "DCBA#9630852*741";
+uint8_t hist[16];
+uint8_t col;
+char queue[2];
+int qin;
+int qout;
+
+void drive_column(int c)
+{
+  GPIOC->BSRR = 0xf00000 | (1 << (c + 4));
+}
+
+int read_rows()
+{
+  return GPIOC->IDR & 0xf;
+}
+
+void push_queue(int n) {
+  n = (n & 0xff) | 0x80;
+  queue[qin] = n;
+  qin ^= 1;
+}
+
+uint8_t pop_queue() {
+  uint8_t tmp = queue[qout] & 0x7f;
+  queue[qout] = 0;
+  qout ^= 1;
+  return tmp;
+}
+
+void update_history(int c, int rows)
+{
+  for(int i = 0; i < 4; i++) {
+    hist[4*c+i] = (hist[4*c+i]<<1) + ((rows>>i)&1);
+    if (hist[4*c+i] == 1)
+      push_queue(4*c+i);
+  }
+}
+
+//void TIM6_DAC_IRQHandler(void) {
+//  TIM6->SR &= ~TIM_SR_UIF;
+//  int rows = read_rows();
+//  update_history(col, rows);
+//  col = (col + 1) & 3;
+//  drive_column(col);
+//}
+
+char get_keypress() {
+  for(;;) {
+    asm volatile ("wfi" : :);   // wait for an interrupt
+    if (queue[qout] == 0)
+      continue;
+    return keymap[pop_queue()];
+  }
+}
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
   if (GPIO_Pin == BUTTON0_PIN) {
     /* LED4_Toggle(); */
@@ -361,6 +501,16 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+  if (htim == &htim6) {
+	int rows = read_rows();
+	update_history(col, rows);
+	col = (col + 1) & 3;
+	drive_column(col);
+	char output = get_keypress();
+	if (1) {
+		LED5_Toggle();
+	}
+  }
   if (htim == &htim7) {
     uint8_t rcv_data;
     HAL_I2C_Master_Receive(&hi2c3, SCREEN_PERIPH_ADDR, &rcv_data, 1,
@@ -369,6 +519,26 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
       LED4_Toggle();
     }
   }
+}
+
+void enable_ports(void) {
+  // Enable RCC to GPIOB and GPIOC
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;//RCC_AHBENR_GPIOEEN;
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;//RCC_AHBENR_GPIOCEN;
+
+  // GPIOE PE0-10 Outputs
+  GPIOE->MODER &= ~0x3FFFFF; // Clear PB0-10
+  GPIOE->MODER |= 0x155555;
+
+  // GPIOC PC4-7 Outputs
+  GPIOC->MODER &= ~0xFF00;
+  GPIOC->MODER |= 0x5500;
+
+  // GPIOC PC0-3 Inputs
+  GPIOC->MODER &= ~0xFF;
+  // GPIOC PC0-3 Pull Down
+  GPIOC->PUPDR &= ~0xFF;
+  GPIOC->PUPDR |= 0xAA;
 }
 /* USER CODE END 4 */
 
