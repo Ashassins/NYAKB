@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -182,12 +181,6 @@ void LED5_Toggle() { HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14); }
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  // KEYBOARD DEBOUNCING
-  init_tim6();
-  int key = 0;
-  for(;;) {
-	char key = get_keypress();
-  }
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -222,6 +215,10 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1) {
+    char key = get_keypress();
+    if (key) {
+    	LED5_On();
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -433,7 +430,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
-
+  __HAL_RCC_GPIOE_CLK_ENABLE();
 }
 
 /* USER CODE BEGIN 4 */
@@ -442,44 +439,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
     /* LED4_Toggle(); */
     I2C_send_test();
   }
-}
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-  if (htim == &htim6) {
-	int rows = read_rows();
-	update_history(col, rows);
-	col = (col + 1) & 3;
-	drive_column(col);
-	get_keypress();
-  }
-  if (htim == &htim7) {
-    uint8_t rcv_data;
-    HAL_I2C_Master_Receive(&hi2c3, SCREEN_PERIPH_ADDR, &rcv_data, 1,
-                           HAL_MAX_DELAY);
-    if (rcv_data == 1) {
-      LED4_Toggle();
-    }
-  }
-}
-
-void enable_ports(void) {
-  // Enable RCC to GPIOB and GPIOC
-  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;//RCC_AHBENR_GPIOEEN;
-  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;//RCC_AHBENR_GPIOCEN;
-
-  // GPIOE PE0-10 Outputs
-  GPIOE->MODER &= ~0x3FFFFF; // Clear PB0-10
-  GPIOE->MODER |= 0x155555;
-
-  // GPIOC PC4-7 Outputs
-  GPIOC->MODER &= ~0xFF00;
-  GPIOC->MODER |= 0x5500;
-
-  // GPIOC PC0-3 Inputs
-  GPIOC->MODER &= ~0xFF;
-  // GPIOC PC0-3 Pull Down
-  GPIOC->PUPDR &= ~0xFF;
-  GPIOC->PUPDR |= 0xAA;
 }
 
 //===========================================================================
@@ -492,14 +451,53 @@ char queue[2];
 int qin;
 int qout;
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+  if (htim == &htim6) {
+	int rows = read_rows();
+	update_history(col, rows);
+	col = (col + 1) & 3;
+	drive_column(col);
+	char key = get_keypress();
+  }
+  if (htim == &htim7) {
+    uint8_t rcv_data;
+    HAL_I2C_Master_Receive(&hi2c3, SCREEN_PERIPH_ADDR, &rcv_data, 1,
+                           HAL_MAX_DELAY);
+    if (rcv_data == 1) {
+      LED4_Toggle();
+    }
+  }
+}
+
+void enable_ports(void) { // Deboucning
+  // Enable RCC to GPIOB and GPIOC
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;//RCC_AHBENR_GPIOEEN;
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;//RCC_AHBENR_GPIOCEN;
+
+  // GPIOE PE0-10 Outputs
+  GPIOE->MODER &= ~0x3FFFFF; // Clear PB0-10
+  GPIOE->MODER |= 0x155555;
+
+  // GPIOC PC4-7 Outputs
+  GPIOE->MODER &= ~0xFF00;
+  GPIOE->MODER |= 0x5500;
+
+  // GPIOC PC0-3 Inputs
+  GPIOE->MODER &= ~0xFF;
+  // GPIOC PC0-3 Pull Down
+  GPIOE->PUPDR &= ~0xFF;
+  GPIOE->PUPDR |= 0xAA;
+}
+
+
 void drive_column(int c)
 {
-  GPIOC->BSRR = 0xf00000 | (1 << (c + 4));
+  GPIOE->BSRR = 0xf00000 | (1 << (c + 4));
 }
 
 int read_rows()
 {
-  return GPIOC->IDR & 0xf;
+  return GPIOE->IDR & 0xf;
 }
 
 void push_queue(int n) {
