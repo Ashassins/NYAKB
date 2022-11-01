@@ -74,7 +74,6 @@ Debug/
 Release/
 .cache/
 .settings/
-.cproject
 .mxproject
 *.launch
 .metadata
@@ -112,3 +111,4 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+Demonstrations
