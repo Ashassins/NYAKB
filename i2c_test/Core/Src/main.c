@@ -202,7 +202,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C3_Init();
-  MX_USB_OTG_HS_PCD_Init();
+  //MX_USB_OTG_HS_PCD_Init();
   MX_TIM7_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
@@ -457,16 +457,16 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	update_history(col, rows);
 	col = (col + 1) & 3;
 	drive_column(col);
-	char key = get_keypress();
+	//char key = get_keypress();
   }
-  if (htim == &htim7) {
-    uint8_t rcv_data;
-    HAL_I2C_Master_Receive(&hi2c3, SCREEN_PERIPH_ADDR, &rcv_data, 1,
-                           HAL_MAX_DELAY);
-    if (rcv_data == 1) {
-      LED4_Toggle();
-    }
-  }
+  //if (htim == &htim7) {
+  //  uint8_t rcv_data;
+  //  HAL_I2C_Master_Receive(&hi2c3, SCREEN_PERIPH_ADDR, &rcv_data, 1,
+  //                         HAL_MAX_DELAY);
+  //  if (rcv_data == 1) {
+  //    LED4_Toggle();
+  //  }
+  //}
 }
 
 void enable_ports(void) { // Deboucning
