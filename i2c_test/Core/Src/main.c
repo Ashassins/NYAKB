@@ -83,10 +83,8 @@ static void I2C_send_packet(I2C_HandleTypeDef *hi2c, uint16_t DevAddress,
   } while (HAL_I2C_GetError(hi2c) == HAL_I2C_ERROR_AF);
 }
 static void I2C_send_test() {
-  /* I2C_send_packet(&hi2c3, I2C_ADDRESS, aTxBuffer, txBuffSize); */
-  uint8_t data = 0x42;
-  HAL_StatusTypeDef rv = HAL_I2C_Master_Transmit(&hi2c1, SCREEN_PERIPH_ADDR,
-                                                 &data, 1, HAL_MAX_DELAY);
+	uint8_t tx_val = 0x42;
+	I2C_send_packet(&hi2c1, I2C_ADDRESS, &tx_val, 1);
 }
 static void Button0_Init() {
   GPIO_InitTypeDef GPIO_InitStruct;
