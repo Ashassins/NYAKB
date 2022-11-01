@@ -1,11 +1,11 @@
-#include "stm32f0xx.h"
+//#include "stm32f0xx.h"
 #include <string.h> // for memset() declaration
 #include <math.h>   // for MA_PI
 
 void enable_ports(void) {
   // Enable RCC to GPIOB and GPIOC
-  RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
-  RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;//RCC_AHBENR_GPIOBEN;
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;//RCC_AHBENR_GPIOCEN;
 
   // GPIOB PB0-10 Outputs
   GPIOB->MODER &= ~0x3FFFFF; // Clear PB0-10
@@ -23,7 +23,7 @@ void enable_ports(void) {
 }
 
 //===========================================================================
-// 2.2 Configuring DMA transfers
+// Configuring DMA transfers
 //===========================================================================
 uint16_t msg[8] = { 0x0000,0x0100,0x0200,0x0300,0x0400,0x0500,0x0600,0x0700 };
 extern const char font[];
@@ -32,22 +32,22 @@ void setup_dma(void) {
 	// Enable RCC to DMA
 	// need to use a stream number 0-7 for DMA_SxCR
 	// need to change these constants
-	RCC->AHB1ENR |= RCC_AHB1ENR_DMAEN; // DMA 1 EN on 21
-	DMA1_Channel2->S2CR &= ~DMA_CCR_EN;	// Turn off DMA Channel before config
-	DMA1_Channel2->S2PAR = (uint32_t) &(GPIOB->ODR); //hmmmm
-	DMA1_Channel2->S2M0AR = (uint32_t) msg; // memeory 0 addr?
-//	DMA1_Channel2->S2M1AR = (uint32_t) msg; // memmory 1 addr?
-	DMA1_Channel2->S2NDTR = 8;
-	DMA1_Channel2->S2CR |= DMA_CCR_DIR;
-	DMA1_Channel2->S2CR |= DMA_CCR_MINC;
-	DMA1_Channel2->S2CR |= DMA_CCR_MSIZE_0;
-	DMA1_Channel2->S2CR |= DMA_CCR_PSIZE_0;
-	DMA1_Channel2->S2CR |= DMA_CCR_CIRC;
+	RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN; // DMA 1 EN on 21
+	DMA1_Stream2->CR &= ~DMA_SxCR_EN;	// Turn off DMA Channel before config
+	DMA1_Stream2->PAR = (uint32_t) &(GPIOB->ODR); //hmmmm
+	DMA1_Stream2->M0AR = (uint32_t) msg; // memeory 0 addr?
+//	DMA1_Stream2->S2M1AR = (uint32_t) msg; // memmory 1 addr?
+	DMA1_Stream2->NDTR = 8;
+	DMA1_Stream2->CR |= DMA_SxCR_DIR;
+	DMA1_Stream2->CR |= DMA_SxCR_MINC;
+	DMA1_Stream2->CR |= DMA_SxCR_MSIZE_0;
+	DMA1_Stream2->CR |= DMA_SxCR_PSIZE_0;
+	DMA1_Stream2->CR |= DMA_SxCR_CIRC;
 }
 
 void enable_dma(void) {
 	// Enable DMA
-	DMA1_Channel2->S2CR |= DMA_CCR_EN;
+	DMA1_Stream2->S2CR |= DMA_SxCR_EN;
 }
 
 void init_tim2(void) {
@@ -72,7 +72,7 @@ void append_display(char val) {
 }
 
 //===========================================================================
-// 2.3 Debouncing a Keypad
+// Debouncing a Keypad
 //===========================================================================
 const char keymap[] = "DCBA#9630852*741";
 uint8_t hist[16];
@@ -115,7 +115,7 @@ void update_history(int c, int rows)
 
 void init_tim6() {
   RCC->APB1ENR |= RCC_APB1ENR_TIM6EN; // on 4
-  TIM6->PSC = 48 - 1;
+  TIM6->PSC = 48 - 1; //double this
   TIM6->ARR = 1000 - 1;
   TIM6->DIER |= TIM_DIER_UIE;
   TIM6->CR1 |= TIM_CR1_CEN;

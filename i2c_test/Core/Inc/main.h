@@ -59,7 +59,10 @@ void Error_Handler(void);
 /* USER CODE BEGIN EFP */
 void LED5_Off();
 void LED5_On();
-
+char get_keypress();
+void update_history(int c, int rows);
+void drive_column(int c);
+int read_rows();
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
