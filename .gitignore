@@ -74,13 +74,10 @@ Debug/
 Release/
 .cache/
 .settings/
-.cproject
-.mxproject
 *.launch
 .metadata
 RemoteSystemsTempFiles/
 .gdb_history
-.project
 *.cfg
 
 # For PCBs designed using KiCad: https://www.kicad.org/
