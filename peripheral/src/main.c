@@ -95,8 +95,8 @@ int main(void) {
   initEXTI();
   toggleLED();
   LCD_Setup();
-  LCD_Clear(RED);
-  LCD_DrawString(60, 170, WHITE, 0x00, "HELLO, WORLD!", 16, 1);
+  LCD_Clear(BLACK);
+  // LCD_DrawFillRectangle(100, 100, 200, 300, ILI9488_GREEN);
   for (;;) {
     asm("nop");
   }

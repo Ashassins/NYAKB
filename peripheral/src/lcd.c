@@ -434,6 +434,22 @@ void LCD_SetWindow(uint32_t xStart, uint32_t yStart, uint32_t xEnd, uint32_t yEn
   LCD_WriteRAM_Prepare();
 }
 
+void setAddrWindow(uint32_t xStart, uint32_t yStart, uint32_t xEnd, uint32_t yEnd) {
+  LCD_WR_REG(ILI9488_CASET);
+  LCD_WR_DATA(xStart >> 8);
+  LCD_WR_DATA(0xFF & xStart);
+  LCD_WR_DATA(xEnd >> 8);
+  LCD_WR_DATA(0xFF & xEnd);
+
+  LCD_WR_REG(ILI9488_PASET);
+  LCD_WR_DATA(yStart >> 8);
+  LCD_WR_DATA(0xFF & yStart);
+  LCD_WR_DATA(yEnd >> 8);
+  LCD_WR_DATA(0xFF & yEnd);
+
+  LCD_WR_REG(ILI9488_RAMWR);
+}
+
 //===========================================================================
 // Set the entire display to one color
 //===========================================================================
@@ -441,15 +457,51 @@ void LCD_Clear(u32 Color) {
   lcddev.select(1);
   unsigned int i, m;
   LCD_SetWindow(0, 0, lcddev.width - 1, lcddev.height - 1);
-  LCD_WriteData16_Prepare();
+  //LCD_WriteData16_Prepare();
   for (i = 0; i < lcddev.height; i++) {
     for (m = 0; m < lcddev.width; m++) {
-      LCD_WriteData16(Color);
+      //LCD_WriteData16(Color);
+      write16BitColor(Color);
     }
   }
-  LCD_WriteData16_End();
+  //LCD_WriteData16_End();
   lcddev.select(0);
 }
+
+
+void spiwrite(uint8_t data) {
+  while ((SPI->SR & SPI_SR_TXE) == 0)
+    ;
+  SPI->DR = data;
+}
+
+void write16BitColor(uint16_t color){
+  // #if (__STM32F1__)
+  //     uint8_t buff[4] = {
+  //       (((color & 0xF800) >> 11)* 255) / 31,
+  //       (((color & 0x07E0) >> 5) * 255) / 63,
+  //       ((color & 0x001F)* 255) / 31
+  //     };
+  //     SPI.dmaSend(buff, 3);
+  // #else
+  uint8_t r = (color & 0xF800) >> 11;
+  uint8_t g = (color & 0x07E0) >> 5;
+  uint8_t b = color & 0x001F;
+
+  r = (r * 255) / 31;
+  g = (g * 255) / 63;
+  b = (b * 255) / 31;
+
+  LCD_WriteData16_Prepare();
+  LCD_WriteData16(0x1234);
+  LCD_WriteData16_End();
+//  spiwrite(r);
+//  spiwrite(g);
+//  spiwrite(b);
+  // #endif
+}
+
+
 
 //===========================================================================
 // Draw a single dot of color c at (x,y)
@@ -546,6 +598,17 @@ static void _LCD_Fill(u32 sx, u32 sy, u32 ex, u32 ey, u32 color) {
       LCD_WriteData16(color);
   }
   LCD_WriteData16_End();
+}
+
+void fillRect(u32 sx, u32 sy, u32 ex, u32 ey, u32 color) {
+  u32 i, j;
+  u32 width = ex - sx + 1;
+  u32 height = ey - sy + 1;
+  setAddrWindow(sx, sy, ex, ey);
+  for (i = 0; i < height; i++) {
+    for (j = 0; j < width; j++)
+      write16BitColor(color);
+  }
 }
 
 //===========================================================================
