@@ -21,13 +21,20 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include "usb_device.h"
-#include "stm32f4xx_hal.h"
 #include "usbd_core.h"
 #include "usbd_desc.h"
 #include "usbd_hid.h"
 
 /* USER CODE BEGIN Includes */
-
+#define RIGHT_GUI 1 << 7
+#define RIGHT_ALT 1 << 6
+#define RIGHT_SHIFT 1 << 5
+#define RIGHT_CTRL 1 << 4
+#define LEFT_GUI 1 << 3
+#define LEFT_ALT 1 << 2
+#define LEFT_SHIFT 1 << 1
+#define LEFT_CTRL 1 << 0
+#define KEYCODE_BASE 0x4
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN PV */
@@ -36,7 +43,7 @@
 typedef struct {
   uint8_t modifier;
   uint8_t reserved;
-  uint8_t keycodes[7];
+  uint8_t keycodes[6];
 } __packed KeyboardReport;
 
 KeyboardReport keyboardReport = {0};
@@ -51,7 +58,6 @@ KeyboardReport keyboardReport = {0};
 /* USB Device Core handle declaration. */
 USBD_HandleTypeDef hUsbDeviceFS;
 
-
 /*
  * -- Insert your variables declaration here --
  */
@@ -63,14 +69,18 @@ USBD_HandleTypeDef hUsbDeviceFS;
  * -- Insert your external function declaration here --
  */
 /* USER CODE BEGIN 1 */
+
 void PayRespects(void) {
-  keyboardReport.keycodes[1] = 0x4 + 'f';
+  keyboardReport.modifier |= LEFT_SHIFT;
+  keyboardReport.keycodes[0] = KEYCODE_BASE + 'f' - 'a';
+  USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&keyboardReport,
+                               sizeof(KeyboardReport));
+  HAL_Delay(50);
+  keyboardReport.modifier = 0;
+  keyboardReport.keycodes[0] = 0;
   USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&keyboardReport,
                       sizeof(KeyboardReport));
-  for(int i = 0 ; i< 100000;i++){asm volatile ("nop");}
-  keyboardReport.keycodes[1] = 0;
-  USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&keyboardReport,
-                      sizeof(KeyboardReport));
+  HAL_Delay(100);
 }
 /* USER CODE END 1 */
 
