@@ -3515,7 +3515,7 @@
     (property "Value" "10uF" (id 1) (at 21.59 81.28 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "lib_file:10uF" (id 2) (at 27.6352 82.55 0)
+    (property "Footprint" "lib_file:new10uf" (id 2) (at 27.6352 82.55 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 26.67 78.74 0)
@@ -3661,7 +3661,7 @@
       (reference "C1") (unit 1) (value ".1uF") (footprint "lib_file:.1uF")
     )
     (path "/f24fd606-4838-4530-b0e3-89032e781ead"
-      (reference "C2") (unit 1) (value "10uF") (footprint "lib_file:10uF")
+      (reference "C2") (unit 1) (value "10uF") (footprint "lib_file:new10uf")
     )
     (path "/5da5ad4e-2433-4ba1-8c71-f4c200e15d6f"
       (reference "C3") (unit 1) (value ".1uF") (footprint "lib_file:.1uF")
