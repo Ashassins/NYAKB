@@ -48,7 +48,7 @@ SPI_HandleTypeDef hspi1;
 TIM_HandleTypeDef htim7;
 
 /* USER CODE BEGIN PV */
-uint8_t aTxBuffer[20]
+uint8_t aTxBuffer[20];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
