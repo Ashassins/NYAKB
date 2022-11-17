@@ -32,6 +32,16 @@ typedef struct
 // is defined properly for the rotation.
 extern lcd_dev_t lcddev;
 
+/****************** Bit definition for GPIO_AFRL register  ********************/
+#define GPIO_AFRL_AFR0            ((uint32_t)0x0000000F)
+#define GPIO_AFRL_AFR1            ((uint32_t)0x000000F0)
+#define GPIO_AFRL_AFR2            ((uint32_t)0x00000F00)
+#define GPIO_AFRL_AFR3            ((uint32_t)0x0000F000)
+#define GPIO_AFRL_AFR4            ((uint32_t)0x000F0000)
+#define GPIO_AFRL_AFR5            ((uint32_t)0x00F00000)
+#define GPIO_AFRL_AFR6            ((uint32_t)0x0F000000)
+#define GPIO_AFRL_AFR7            ((uint32_t)0xF0000000)
+
 // Rotation:
 // 0: rotate 0
 // 1: rotate: 90

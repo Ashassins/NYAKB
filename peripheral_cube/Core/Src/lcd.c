@@ -293,12 +293,48 @@ void LCD_Init(void (*reset)(int), void (*select)(int), void (*reg_select)(int)) 
   lcddev.select(0);
 }
 
+void init_spi1_slow(void) {
+  RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+  RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
+  // Set Pins 3, 4, 5 to alternate
+  GPIOB->MODER |=
+      GPIO_MODER_MODER3_1 | GPIO_MODER_MODER4_1 | GPIO_MODER_MODER5_1;
+  // Configure alternate function 0 on pins 3, 4, 5
+  GPIOB->AFR[0] &= ~(GPIO_AFRL_AFR3 | GPIO_AFRL_AFR4 | GPIO_AFRL_AFR5);
+
+  // Setup baud rate as low as possible, set master mode, enable software slave
+  // mgmt, and internal slave select
+  SPI1->CR1 |= SPI_CR1_BR | SPI_CR1_MSTR | SPI_CR1_SSM | SPI_CR1_SSI;
+  //
+  SPI1->CR2 |= SPI_CR2_DS_0 | SPI_CR2_DS_1 | SPI_CR2_DS_2 | SPI_CR2_FRXTH;
+  SPI1->CR1 |= SPI_CR1_SPE;
+}
+
+void init_lcd_spi(void) {
+  // 8,11,14 as GPIO Out
+  // Enable RCC to GPIOB
+  RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+  GPIOB->MODER |=
+      GPIO_MODER_MODER8_0 | GPIO_MODER_MODER11_0 | GPIO_MODER_MODER14_0;
+  init_spi1_slow();
+  // Make it fast now
+  SPI1->CR1 &= ~SPI_CR1_SPE;
+  SPI1->CR1 &= ~SPI_CR1_BR;
+  SPI1->CR1 |= SPI_CR1_BR_0;
+  SPI1->CR1 |= SPI_CR1_SPE;
+}
 
 void LCD_Setup() {
+  init_lcd_spi();
+  GPIOB->MODER |= 0x2 << (3 * 2);
   tft_select(0);
   tft_reset(0);
   tft_reg_select(0);
   LCD_Init(tft_reset, tft_select, tft_reg_select);
+//  tft_select(0);
+//  tft_reset(0);
+//  tft_reg_select(0);
+//  LCD_Init(tft_reset, tft_select, tft_reg_select);
 }
 
 //===========================================================================

@@ -94,13 +94,15 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_I2C1_Init();
-  MX_SPI1_Init();
-  MX_TIM7_Init();
+//  MX_GPIO_Init();
+//  MX_I2C1_Init();
+//  MX_SPI1_Init();
+//  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
+  initEXTI();
   LCD_Setup();
-  char *str = "Hello, World!";
+  LCD_Clear(BLACK);
+  char *str = "!dlroW, olleH";
   LCD_DrawString(20, 20, BLACK, WHITE, str, 14, 0);
 
   /* USER CODE END 2 */
@@ -224,11 +226,11 @@ static void MX_SPI1_Init(void)
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_MASTER;
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi1.Init.DataSize = SPI_DATASIZE_16BIT;
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -310,6 +312,18 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void initEXTI(void) {
+  RCC->APB2ENR |= RCC_APB2ENR_SYSCFGCOMPEN;
+  RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+  // Associate PA0 with exti 0
+  SYSCFG->EXTICR[0] &= ~(15);
+  GPIOA->MODER &= ~(3);
+  GPIOA->PUPDR |= 2;
+  EXTI->RTSR |= 1;
+  EXTI->IMR |= 1;
+  NVIC_EnableIRQ(EXTI0_1_IRQn);
+  NVIC_SetPriority(EXTI0_1_IRQn, 3);
+}
 
 /* USER CODE END 4 */
 
