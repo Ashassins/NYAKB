@@ -7,19 +7,19 @@
 #include <stdint.h>
 // shorthand notation for 8-bit and 16-bit unsigned integers
 typedef uint8_t u8;
-typedef uint16_t u32;
+typedef uint16_t u16;
 
 // The LCD device structure definition.
 //
 typedef struct
 {
-    u32 width;
-    u32 height;
-    u32 id;
+    u16 width;
+    u16 height;
+    u16 id;
     u8  dir;
-    u32  wramcmd;
-    u32  setxcmd;
-    u32  setycmd;
+    u16  wramcmd;
+    u16  setxcmd;
+    u16  setycmd;
     void (*reset)(int);
     void (*select)(int);
     void (*reg_select)(int);
@@ -40,7 +40,7 @@ extern lcd_dev_t lcddev;
 #define USE_HORIZONTAL       0
 
 // The dimensions of the display.
-#define LCD_W 480
+#define LCD_W 240
 #define LCD_H 320
 
 // Some popular colors
@@ -67,20 +67,20 @@ extern lcd_dev_t lcddev;
 
 void LCD_Setup(void);
 void LCD_Init(void (*reset)(int), void (*select)(int), void (*reg_select)(int));
-void LCD_Clear(u32 Color);
-void LCD_DrawPoint(u32 x,u32 y,u32 c);
-void LCD_DrawLine(u32 x1, u32 y1, u32 x2, u32 y2, u32 c);
-void LCD_DrawRectangle(u32 x1, u32 y1, u32 x2, u32 y2, u32 c);
-void LCD_DrawFillRectangle(u32 x1, u32 y1, u32 x2, u32 y2, u32 c);
-void LCD_Circle(u32 xc, u32 yc, u32 r, u32 fill, u32 c);
-void LCD_DrawTriangle(u32 x0,u32 y0, u32 x1,u32 y1, u32 x2,u32 y2, u32 c);
-void LCD_DrawFillTriangle(u32 x0,u32 y0, u32 x1,u32 y1, u32 x2,u32 y2, u32 c);
-void LCD_DrawChar(u32 x,u32 y,u32 fc, u32 bc, char num, u8 size, u8 mode);
-void LCD_DrawString(u32 x,u32 y, u32 fc, u32 bg, const char *p, u8 size, u8 mode);
-void LCD_SetWindow(uint32_t xStart, uint32_t yStart, uint32_t xEnd, uint32_t yEnd);
+void LCD_Clear(u16 Color);
+void LCD_DrawPoint(u16 x,u16 y,u16 c);
+void LCD_DrawLine(u16 x1, u16 y1, u16 x2, u16 y2, u16 c);
+void LCD_DrawRectangle(u16 x1, u16 y1, u16 x2, u16 y2, u16 c);
+void LCD_DrawFillRectangle(u16 x1, u16 y1, u16 x2, u16 y2, u16 c);
+void LCD_Circle(u16 xc, u16 yc, u16 r, u16 fill, u16 c);
+void LCD_DrawTriangle(u16 x0,u16 y0, u16 x1,u16 y1, u16 x2,u16 y2, u16 c);
+void LCD_DrawFillTriangle(u16 x0,u16 y0, u16 x1,u16 y1, u16 x2,u16 y2, u16 c);
+void LCD_DrawChar(u16 x,u16 y,u16 fc, u16 bc, char num, u8 size, u8 mode);
+void LCD_DrawString(u16 x,u16 y, u16 fc, u16 bg, const char *p, u8 size, u8 mode);
+void LCD_SetWindow(uint16_t xStart, uint16_t yStart, uint16_t xEnd, uint16_t yEnd);
 void LCD_WriteData16_Prepare();
 void LCD_WriteData16_End();
-void LCD_WriteData16(u32 data);
+void LCD_WriteData16(u16 data);
 //===========================================================================
 // C Picture data structure.
 //===========================================================================
@@ -91,6 +91,6 @@ typedef const struct {
     unsigned char  pixel_data[0]; // variable length array
 } Picture;
 
-void LCD_DrawPicture(u32 x0, u32 y0, const Picture *pic);
+void LCD_DrawPicture(u16 x0, u16 y0, const Picture *pic);
 
 #endif
