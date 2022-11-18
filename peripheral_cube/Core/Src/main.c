@@ -99,11 +99,11 @@ int main(void)
 //  MX_SPI1_Init();
 //  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
-  initEXTI();
-  LCD_Setup();
-  LCD_Clear(BLACK);
-  char *str = "!dlroW, olleH";
-  LCD_DrawString(20, 20, BLACK, WHITE, str, 14, 0);
+  initI2CPeripheral();
+//  LCD_Setup();
+//  LCD_Clear(BLACK);
+//  char *str = "!dlroW, olleH";
+//  LCD_DrawString(20, 20, BLACK, WHITE, str, 14, 0);
 
   /* USER CODE END 2 */
 
@@ -111,7 +111,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1) {
     /* USER CODE END WHILE */
-
+	  asm volatile("wfi"::);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -312,19 +312,48 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void initEXTI(void) {
-  RCC->APB2ENR |= RCC_APB2ENR_SYSCFGCOMPEN;
-  RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
-  // Associate PA0 with exti 0
-  SYSCFG->EXTICR[0] &= ~(15);
-  GPIOA->MODER &= ~(3);
-  GPIOA->PUPDR |= 2;
-  EXTI->RTSR |= 1;
-  EXTI->IMR |= 1;
-  NVIC_EnableIRQ(EXTI0_1_IRQn);
-  NVIC_SetPriority(EXTI0_1_IRQn, 3);
+void initI2CPeripheral(void) {
+  RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+  GPIOB->MODER &= ~((3 << (2 * 6)) | (3 << (2 * 7)));
+  GPIOB->MODER |= (2 << (2 * 6)) | (2 << (2 * 7));
+  GPIOB->AFR[0] &= ~((0xf << (4 * 6)) | (0xf << (4 * 7)));
+  GPIOB->AFR[0] |= 1 << (4 * 6) | 1 << (4 * 7);
+
+  RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
+
+  // Disable to perform reset, 0: Analog noise filter on, Error interrupt
+  // disable,Enable clock stretching
+  /* (4) Enable own address 1 */
+  I2C1->CR1 = 0;
+  I2C1->TIMINGR = (uint32_t)0x00B00000;    /* (1) */
+  I2C1->CR1 = I2C_CR1_PE | I2C_CR1_ADDRIE; /* (2) */
+  I2C1->OAR1 |= (uint32_t)(0x5a << 1);     /* (3) */
+  I2C1->OAR1 |= I2C_OAR1_OA1EN;            /* (4) */
+
+  NVIC_EnableIRQ((IRQn_Type)I2C1_IRQn);
+  NVIC_SetPriority((IRQn_Type)I2C1_IRQn, 2);
 }
 
+
+void I2C1_IRQHandler(void) {
+  uint32_t isr_stat = I2C1->ISR;
+  if (isr_stat & I2C_ISR_ADDR) {
+    I2C1->ICR |= I2C_ICR_ADDRCF;
+    if ((isr_stat & I2C_ISR_DIR) == I2C_ISR_DIR) {
+      I2C1->CR1 |= I2C_CR1_TXIE;
+    }
+  }
+  if ((isr_stat & I2C_ISR_RXNE) == I2C_ISR_RXNE) {
+    I2C1->ICR |= I2C_ICR_ADDRCF;
+    uint32_t data = I2C1->RXDR;
+    if (data == 0x42) {
+      LCD_Setup();
+	  LCD_Clear(BLACK);
+	  char *str = "!dlroW, olleH";
+	  LCD_DrawString(20, 20, BLACK, WHITE, str, 14, 0);
+    }
+  }
+}
 /* USER CODE END 4 */
 
 /**

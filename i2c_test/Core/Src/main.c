@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "usb_device.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -72,8 +71,8 @@ static void I2C_send_packet(I2C_HandleTypeDef *hi2c, uint16_t DevAddress,
     of current transfer before starting a new one. For simplicity reasons, this
     example is just waiting till the end of the transfer, but application may
     perform other tasks while transfer operation is ongoing. */
-    while (HAL_I2C_GetState(hi2c) != HAL_I2C_STATE_READY) {
-    }
+//    while (HAL_I2C_GetState(hi2c) != HAL_I2C_STATE_READY) {
+//    }
 
     /* When Acknowledge failure occurs (Slave don't acknowledge its address)
     Master restarts communication */
@@ -158,14 +157,14 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-//  MX_GPIO_Init();
-//  MX_TIM7_Init();
+  MX_GPIO_Init();
+  MX_TIM7_Init();
 //  MX_I2C1_Init();
-//  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 //  UserLedInit();
 //  LED4_Off();
 //  Button0_Init();
+  init_i2c();
   //  HAL_TIM_Base_Start_IT(&htim7);
   /* USER CODE END 2 */
 
@@ -173,7 +172,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1) {
     /* USER CODE END WHILE */
-	  asm volatile("wfi"::);
+	  i2c_start();
+	  i2c_addr(I2C_ADDRESS);
+	  i2c_write(0x42);
+	  i2c_stop();
+//	  I2C_send_test();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -196,10 +199,11 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL.PLLM = 12;
   RCC_OscInitStruct.PLL.PLLN = 168;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
@@ -218,7 +222,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
   {
     Error_Handler();
   }
@@ -305,17 +309,87 @@ static void MX_GPIO_Init(void)
 {
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
 }
 
 /* USER CODE BEGIN 4 */
+//void nano_wait(unsigned int);
+
+#define GPIOEX_ADDR 0x00 // ENTER GPIO EXPANDER I2C ADDRESS HERE
+#define EEPROM_ADDR 0x00 // ENTER EEPROM I2C ADDRESS HERE
+
+uint8_t NUNCHUK_INIT = 0;
+
+void init_i2c(void) {
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
+
+  //    GPIOB->MODER &= ~0xF000;
+  //    GPIOB->MODER |= 0xA000; // PB 6-7 Alternate Function
+  //    GPIOB->AFR[0] &= ~(0xf << (4*(6)));
+  //    GPIOB->AFR[0] |=   0x4 << (4*(6));
+  //    GPIOB->AFR[0] &= ~(0xf << (4*(7)));
+  //    GPIOB->AFR[0] |=   0x4 << (4*(7));
+  GPIOB->MODER |= 2 << (2 * 6) | 2 << (2 * 7);
+  GPIOB->OTYPER |= 1 << 6 | 1 << 7;
+  GPIOB->OSPEEDR |= 3 << (2 * 6) | 3 << (2 * 7);
+  GPIOB->AFR[0] |= 4 << (4 * 6) | 4 << (4 * 7);
+
+  RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
+
+  // Reseting I2C
+  I2C1->CR1 |= I2C_CR1_SWRST;
+  I2C1->CR1 &= ~I2C_CR1_SWRST;
+
+  I2C1->CR2 |= 28 << 0;
+  I2C1->CCR = 0x8c;
+  I2C1->TRISE = 0x1d;
+
+  // Enable I2C
+  I2C1->CR1 |= I2C_CR1_PE;
+}
+
+//===========================================================================
+// 2.3 I2C helpers
+//===========================================================================
+
+void i2c_start() {
+  I2C1->CR1 |= I2C_CR1_START; // Generate Start
+  while (!(I2C1->SR1 & (I2C_SR1_SB))); // Wait for SB set
+}
+
+void i2c_write(uint8_t data) {
+	while (!(I2C1->SR1 & (I2C_SR1_TXE)));
+	I2C1->DR = data;
+	while (!(I2C1->SR1 & (I2C_SR1_BTF)));
+}
+
+void i2c_addr(uint8_t addr) {
+	I2C1->DR = addr;
+	while (!(I2C1->SR1 & (I2C_SR1_ADDR)));
+	uint8_t temp = I2C1->SR1 | I2C1->SR2; // Clearing addr bit
+}
+
+void i2c_stop() {
+	I2C1->CR1 |= I2C_CR1_STOP;
+}
+
+
+//===========================================================================
+// Main and supporting functions
+//===========================================================================
+//void nano_wait(unsigned int n) {
+//  asm("        mov r0,%0\n"
+//      "repeat: sub r0,#83\n"
+//      "        bgt repeat\n"
+//      :
+//      : "r"(n)
+//      : "r0", "cc");
+//}
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
   if (GPIO_Pin == BUTTON0_PIN) {
     LED4_Toggle();
-    PayRespects();
+//    PayRespects();
   }
 }
 
