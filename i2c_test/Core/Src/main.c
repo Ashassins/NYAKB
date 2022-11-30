@@ -165,6 +165,7 @@ int main(void)
 //  LED4_Off();
 //  Button0_Init();
   init_i2c();
+
   //  HAL_TIM_Base_Start_IT(&htim7);
   /* USER CODE END 2 */
 
@@ -172,10 +173,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1) {
     /* USER CODE END WHILE */
+	  HAL_Delay(5000);
 	  i2c_start();
-	  i2c_write((uint8_t)(I2C_ADDRESS<<1)|0x00);
-	  i2c_write(0x42);
-	  i2c_stop();
+	    i2c_write((uint8_t)(I2C_ADDRESS<<1)|0x00);
+	    i2c_write(0x42);
+	    i2c_stop();
 //	  i2c_addr(I2C_ADDRESS);
 //	  i2c_write(0x42);
 //	  i2c_stop();
