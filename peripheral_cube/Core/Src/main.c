@@ -50,6 +50,7 @@ TIM_HandleTypeDef htim7;
 
 /* USER CODE BEGIN PV */
 uint8_t aTxBuffer[20];
+int show_i2c_msg = 1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -100,6 +101,8 @@ int main(void)
 //  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
   initI2CPeripheral();
+  LCD_Setup();
+  LCD_Clear(BLACK);
 //  LCD_Setup();
 //  LCD_Clear(BLACK);
 //  char *str = "!dlroW, olleH";
@@ -347,10 +350,14 @@ void I2C1_IRQHandler(void) {
     I2C1->ICR |= I2C_ICR_ADDRCF;
     uint32_t data = I2C1->RXDR;
     if (data == 0x42) {
-      LCD_Setup();
-	  LCD_Clear(BLACK);
-	  char *str = "!dlroW, olleH";
-	  LCD_DrawString(20, 20, BLACK, WHITE, str, 14, 0);
+      if (show_i2c_msg) {
+    	  char *str = "EGASSEM C2I DEVEICER";
+    	  LCD_DrawString(10, 100, BLACK, WHITE, str, 20, 0);
+    	  show_i2c_msg = 0;
+      } else {
+    	  LCD_Clear(BLACK);
+    	  show_i2c_msg = 1;
+      }
     }
   }
 }
