@@ -57,6 +57,9 @@ extern "C" {
 #define SCL_ON (OUT_REG |= (1<< PI2C_SCL))
 #define SCL_OFF (OUT_REG &= ~(1<< PI2C_SCL))
 #define SDA_READ (IN_REG & (1<< PI2C_SDA))
+
+#define NUM_ROWS 5
+#define NUM_COLS 15
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/

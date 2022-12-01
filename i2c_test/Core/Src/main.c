@@ -365,6 +365,13 @@ void init_i2c(void){
 	GPIOB->OSPEEDR |= 3 << (2 * 6) | 3 << (2 * 7); // Very High Speed
 }
 
+void init_keypad(void) {
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+	GPIOA->MODER &= ~0x3ff;
+	GPIOE->MODER |= 0x15555555;
+}
+
 //void SCL_OFF() {
 //	GPIOB->ODR &=  ~(1 << 6);
 //}
