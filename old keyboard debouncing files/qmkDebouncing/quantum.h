@@ -20,10 +20,6 @@
 #include "matrix.h"
 #include "keymap.h"
 
-#ifdef BACKLIGHT_ENABLE
-#    include "backlight.h"
-#endif
-
 #ifdef LED_MATRIX_ENABLE
 #    include "led_matrix.h"
 #endif
@@ -66,30 +62,6 @@ extern layer_state_t layer_state;
 #if defined(SEQUENCER_ENABLE)
 #    include "sequencer.h"
 #    include "process_sequencer.h"
-#endif
-
-#if defined(MIDI_ENABLE) && defined(MIDI_ADVANCED)
-#    include "process_midi.h"
-#endif
-
-#ifdef AUDIO_ENABLE
-#    include "audio.h"
-#    include "process_audio.h"
-#    ifdef AUDIO_CLICKY
-#        include "process_clicky.h"
-#    endif
-#endif
-
-#ifdef STENO_ENABLE
-#    include "process_steno.h"
-#endif
-
-#if defined(AUDIO_ENABLE) || (defined(MIDI_ENABLE) && defined(MIDI_BASIC))
-#    include "process_music.h"
-#endif
-
-#if defined(BACKLIGHT_ENABLE) || defined(LED_MATRIX_ENABLE)
-#    include "process_backlight.h"
 #endif
 
 #ifdef LEADER_ENABLE
@@ -145,20 +117,8 @@ extern layer_state_t layer_state;
 #    include "process_magic.h"
 #endif
 
-#ifdef JOYSTICK_ENABLE
-#    include "process_joystick.h"
-#endif
-
-#ifdef PROGRAMMABLE_BUTTON_ENABLE
-#    include "process_programmable_button.h"
-#endif
-
 #ifdef GRAVE_ESC_ENABLE
 #    include "process_grave_esc.h"
-#endif
-
-#if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
-#    include "process_rgb.h"
 #endif
 
 #ifdef HD44780_ENABLE
@@ -167,15 +127,6 @@ extern layer_state_t layer_state;
 
 #ifdef SEND_STRING_ENABLE
 #    include "send_string.h"
-#endif
-
-#ifdef HAPTIC_ENABLE
-#    include "haptic.h"
-#    include "process_haptic.h"
-#endif
-
-#ifdef OLED_ENABLE
-#    include "oled_driver.h"
 #endif
 
 #ifdef ST7565_ENABLE
@@ -223,10 +174,6 @@ extern layer_state_t layer_state;
 #    include "usbpd.h"
 #endif
 
-#ifdef ENCODER_ENABLE
-#    include "encoder.h"
-#endif
-
 #ifdef POINTING_DEVICE_ENABLE
 #    include "pointing_device.h"
 #endif
@@ -234,10 +181,6 @@ extern layer_state_t layer_state;
 #ifdef CAPS_WORD_ENABLE
 #    include "caps_word.h"
 #    include "process_caps_word.h"
-#endif
-
-#ifdef AUTOCORRECT_ENABLE
-#    include "process_autocorrect.h"
 #endif
 
 // For tri-layer
