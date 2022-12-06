@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "i2c.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -354,77 +355,6 @@ uint8_t NUNCHUK_INIT = 0;
 //  I2C1->CR1 |= I2C_CR1_PE;
 //}
 
-//===========================================================================
-// 2.3 I2C helpers
-//===========================================================================
-
-void init_i2c(void){
-	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
-	GPIOB->MODER |= 1 << (2 * 6) | 1 << (2 * 7); // Setting PB6,7 to Output
-	GPIOB->OTYPER |= 1 << 6 | 1 << 7; // Open Drain
-	GPIOB->OSPEEDR |= 3 << (2 * 6) | 3 << (2 * 7); // Very High Speed
-}
-
-//void SCL_OFF() {
-//	GPIOB->ODR &=  ~(1 << 6);
-//}
-//
-//void SCL_ON() {
-//	GPIOB->ODR |= 1 << 6;
-//}
-//
-//
-//void SDA_OFF() {
-//	GPIOB->ODR &=  ~(1 << 7);
-//}
-//
-//void SDA_ON() {
-//	GPIOB->ODR |= 1 << 7;
-//}
-void dly(int delay) {
-	for(int i = 0 ; i < delay; i++){
-		asm("NOP");
-	}
-}
-
-void i2c_start(){
-    SDA_ON;
-    dly(I2C_DELAY);
-    SCL_ON;
-    dly(I2C_DELAY);
-    SDA_OFF;
-    dly(I2C_DELAY);
-    SCL_OFF;
-    dly(I2C_DELAY);
-}
-
-void i2c_stop(){
-    SDA_OFF;
-    dly(I2C_DELAY);
-    SCL_ON;
-    dly(I2C_DELAY);
-    SDA_ON;
-    dly(I2C_DELAY);
-}
-
-int i2c_write(uint8_t dat){
-
-    for(uint8_t i = 8; i; i--){
-        (dat & 0x80) ? SDA_ON : SDA_OFF; //Mask for the eigth bit
-        dat<<=1;  //Move
-        dly(I2C_DELAY);
-        SCL_ON;
-        dly(I2C_DELAY);
-        SCL_OFF;
-        dly(I2C_DELAY);
-    }
-    SDA_ON;
-    SCL_ON;
-    dly(I2C_DELAY);
-    int ack = !SDA_READ;    // Acknowledge bit
-    SCL_OFF;
-    return ack;
-}
 
 
 //===========================================================================
