@@ -20,6 +20,12 @@ extern "C" {
 #define SCL_OFF (OUT_REG &= ~(1<< PI2C_SCL))
 #define SDA_READ (IN_REG & (1<< PI2C_SDA))
 
+
+void init_i2c(void);
+void i2c_start(void);
+void i2c_stop(void);
+uint32_t i2c_write(uint8_t dat);
+
 #ifdef __cplusplus
 }
 #endif

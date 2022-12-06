@@ -128,7 +128,6 @@ void LED5_Off() { HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET); }
 void LED5_On() { HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET); }
 
 void LED5_Toggle() { HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14); }
-int i2c_write(uint8_t dat);
 /* USER CODE END 0 */
 
 /**
@@ -327,47 +326,8 @@ static void MX_GPIO_Init(void)
 
 uint8_t NUNCHUK_INIT = 0;
 
-//void init_i2c(void) {
-//  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
-//
-//  //    GPIOB->MODER &= ~0xF000;
-//  //    GPIOB->MODER |= 0xA000; // PB 6-7 Alternate Function
-//  //    GPIOB->AFR[0] &= ~(0xf << (4*(6)));
-//  //    GPIOB->AFR[0] |=   0x4 << (4*(6));
-//  //    GPIOB->AFR[0] &= ~(0xf << (4*(7)));
-//  //    GPIOB->AFR[0] |=   0x4 << (4*(7));
-//  GPIOB->MODER |= 2 << (2 * 6) | 2 << (2 * 7);
-//  GPIOB->OTYPER |= 1 << 6 | 1 << 7;
-//  GPIOB->OSPEEDR |= 3 << (2 * 6) | 3 << (2 * 7);
-//  GPIOB->AFR[0] |= 4 << (4 * 6) | 4 << (4 * 7);
-//
-//  RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
-//
-//  // Reseting I2C
-//  I2C1->CR1 |= I2C_CR1_SWRST;
-//  I2C1->CR1 &= ~I2C_CR1_SWRST;
-//
-//  I2C1->CR2 |= 28 << 0;
-//  I2C1->CCR = 0x8c;
-//  I2C1->TRISE = 0x1d;
-//
-//  // Enable I2C
-//  I2C1->CR1 |= I2C_CR1_PE;
-//}
 
 
-
-//===========================================================================
-// Main and supporting functions
-//===========================================================================
-//void nano_wait(unsigned int n) {
-//  asm("        mov r0,%0\n"
-//      "repeat: sub r0,#83\n"
-//      "        bgt repeat\n"
-//      :
-//      : "r"(n)
-//      : "r0", "cc");
-//}
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
   if (GPIO_Pin == BUTTON0_PIN) {
     LED4_Toggle();

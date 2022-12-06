@@ -17,7 +17,7 @@ void dly(int delay) {
 	}
 }
 
-void i2c_start(){
+void i2c_start(void){
     SDA_ON;
     dly(I2C_DELAY);
     SCL_ON;
@@ -37,7 +37,7 @@ void i2c_stop(){
     dly(I2C_DELAY);
 }
 
-int i2c_write(uint8_t dat){
+uint32_t i2c_write(uint8_t dat){
 
     for(uint8_t i = 8; i; i--){
         (dat & 0x80) ? SDA_ON : SDA_OFF; //Mask for the eigth bit
@@ -51,7 +51,7 @@ int i2c_write(uint8_t dat){
     SDA_ON;
     SCL_ON;
     dly(I2C_DELAY);
-    int ack = !SDA_READ;    // Acknowledge bit
+    uint32_t ack = !SDA_READ;    // Acknowledge bit
     SCL_OFF;
     return ack;
 }
