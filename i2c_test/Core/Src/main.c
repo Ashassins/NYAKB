@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "i2c.h"
+#include "keyboard.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,7 +32,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define SCREEN_PERIPH_ADDR (0x5a << 1)
+#define SCREEN_PERIPH_ADDR 0x5a
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -59,75 +60,7 @@ static void MX_I2C1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-static void I2C_send_packet(I2C_HandleTypeDef *hi2c, uint16_t DevAddress,
-                            uint8_t *pData, uint16_t Size) {
-  do {
-    if (HAL_I2C_Master_Transmit_IT(hi2c, DevAddress, pData, Size) != HAL_OK) {
-      /* Error_Handler() function is called in case of error. */
-      Error_Handler();
-    }
 
-    /* Before starting a new communication transfer, you need to check the
-    current state of the peripheral; if it�s busy you need to wait for the end
-    of current transfer before starting a new one. For simplicity reasons, this
-    example is just waiting till the end of the transfer, but application may
-    perform other tasks while transfer operation is ongoing. */
-    //    while (HAL_I2C_GetState(hi2c) != HAL_I2C_STATE_READY) {
-    //    }
-
-    /* When Acknowledge failure occurs (Slave don't acknowledge its address)
-    Master restarts communication */
-  } while (HAL_I2C_GetError(hi2c) == HAL_I2C_ERROR_AF);
-}
-static void I2C_send_test() {
-  uint8_t tx_val = 0x42;
-  I2C_send_packet(&hi2c1, I2C_ADDRESS, &tx_val, 1);
-}
-static void Button0_Init() {
-  GPIO_InitTypeDef GPIO_InitStruct;
-
-  // Button 0 is connected to GPIO PA0
-  // Enable RCC Clock to GPIOA
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-
-  /* Configure Button pin as input with External interrupt */
-  GPIO_InitStruct.Pin = BUTTON0_PIN;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  HAL_GPIO_Init(BUTTON0_PORT, &GPIO_InitStruct);
-
-  /* Enable and set Button EXTI Interrupt to the lowest priority */
-  HAL_NVIC_SetPriority((IRQn_Type)(EXTI0_IRQn), 0x0F, 2);
-  HAL_NVIC_EnableIRQ((IRQn_Type)(EXTI0_IRQn));
-}
-
-void UserLedInit(void) {
-  GPIO_InitTypeDef initStruct;
-  __HAL_RCC_GPIOD_CLK_ENABLE();
-  __HAL_RCC_GPIOD_CLK_ENABLE();
-  initStruct.Pin = GPIO_PIN_12; // Pin for LED 4
-  initStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  initStruct.Pull = GPIO_PULLUP;
-  initStruct.Speed = GPIO_SPEED_FAST;
-  // LED 4 is Pin 12 on GPIOD
-  HAL_GPIO_Init(GPIOD, &initStruct);
-  // LED 5 is Pin 14 on GPIOD
-  initStruct.Pin = GPIO_PIN_14; // Pin for LED 5
-  HAL_GPIO_Init(GPIOD, &initStruct);
-
-  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
-}
-
-void LED4_Off() { HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET); }
-
-void LED4_Toggle() { HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_12); }
-
-void LED5_Off() { HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET); }
-void LED5_On() { HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET); }
-
-void LED5_Toggle() { HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14); }
 /* USER CODE END 0 */
 
 /**
@@ -161,20 +94,19 @@ int main(void) {
   MX_TIM7_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  //  UserLedInit();
-  //  LED4_Off();
-  //  Button0_Init();
-  // init_i2c();
+  init_i2c();
+  init_keypad();
 
-  //  HAL_TIM_Base_Start_IT(&htim7);
+  HAL_TIM_Base_Start_IT(&htim7);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1) {
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
+
+    asm volatile("wfi" ::);
   }
   /* USER CODE END 3 */
 }
@@ -298,25 +230,14 @@ static void MX_GPIO_Init(void) {
   __HAL_RCC_GPIOB_CLK_ENABLE();
 }
 
-
-
-
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-  if (GPIO_Pin == BUTTON0_PIN) {
-    LED4_Toggle();
-    //    PayRespects();
-  }
-}
-
+/* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-  // if (htim == &htim7) {
-  //   uint8_t rcv_data;
-  //   HAL_I2C_Master_Receive(&hi2c1, SCREEN_PERIPH_ADDR, &rcv_data, 1,
-  //                          HAL_MAX_DELAY);
-  //   if (rcv_data == 1) {
-  //     LED4_Toggle();
-  //   }
-  // }
+  if (htim == &htim7) {
+    uint8_t keycodes[6];
+    scan_keymatrix();
+    uint8_t nread = read_keypad(6, keycodes);
+    i2c_write_bytes(SCREEN_PERIPH_ADDR, keycodes, nread);
+  }
 }
 /* USER CODE END 4 */
 

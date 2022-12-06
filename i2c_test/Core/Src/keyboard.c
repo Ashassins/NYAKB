@@ -1,6 +1,7 @@
 #include "keyboard.h"
 
 uint32_t col_state_buf_idx = 0;
+uint8_t col_state[KEYBOARD_NCOLS][KEYBOARD_COL_STATE_LEN];
 
 GPIO_TypeDef *ROW_BASE;
 GPIO_TypeDef *COL_BASE;
@@ -13,7 +14,7 @@ void init_keypad(void) {
   GPIOE->MODER |= 0x15555555;
 }
 
-void scan_keymatrix() {
+void scan_keymatrix(void) {
   for (uint8_t col = 0; col < KEYBOARD_NCOLS; col++) {
     // Set takes precedence over reset, so reset all columns off and turn on the
     // one we want

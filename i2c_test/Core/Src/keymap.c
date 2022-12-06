@@ -1,5 +1,5 @@
 #include "keymap.h"
-uint8_t keymap[KEYBOARD_NCOLS][KEYBOARD_NROWS] = {
+uint8_t key_map[KEYBOARD_NCOLS][KEYBOARD_NROWS] = {
   {KC_ESCAPE, KC_TAB, KC_CAPS_LOCK, KC_LEFT_SHIFT, KC_LEFT_CTRL},
   {KC_1, KC_Q, KC_A, KC_Z, KC_NO} ,
   {KC_2, KC_W, KC_S, KC_X, KC_LEFT_ALT},

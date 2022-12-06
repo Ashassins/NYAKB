@@ -11,7 +11,9 @@
 
 extern uint8_t col_state[KEYBOARD_NCOLS][KEYBOARD_COL_STATE_LEN];
 
-void init_keypad();
+void init_keypad(void);
+
+void scan_keymatrix(void);
 
 // Returns 0 if no keys remain, return 1 if keys remain
 uint8_t read_keypad(uint16_t max_press_keys, uint8_t *key_press_storage);

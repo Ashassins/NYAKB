@@ -25,6 +25,7 @@ void init_i2c(void);
 void i2c_start(void);
 void i2c_stop(void);
 uint32_t i2c_write(uint8_t dat);
+uint8_t i2c_write_bytes(uint8_t addr, uint8_t *data, uint32_t size);
 
 #ifdef __cplusplus
 }
