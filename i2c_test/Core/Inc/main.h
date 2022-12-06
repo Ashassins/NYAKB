@@ -46,20 +46,6 @@ extern "C" {
 #define I2C_ADDRESS         0x5A
 #define MASTER_REQ_READ    0x12
 #define MASTER_REQ_WRITE   0x34
-
-#define I2C_DELAY 420
-#define PI2C_SCL 6
-#define PI2C_SDA 7
-#define OUT_REG GPIOB->ODR
-#define IN_REG GPIOB->IDR
-#define SDA_ON (OUT_REG |= (1<< PI2C_SDA))
-#define SDA_OFF (OUT_REG &= ~(1<< PI2C_SDA))
-#define SCL_ON (OUT_REG |= (1<< PI2C_SCL))
-#define SCL_OFF (OUT_REG &= ~(1<< PI2C_SCL))
-#define SDA_READ (IN_REG & (1<< PI2C_SDA))
-
-#define NUM_ROWS 5
-#define NUM_COLS 15
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
