@@ -92,7 +92,6 @@ int main(void) {
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM7_Init();
-  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
   init_i2c();
   init_keypad();
@@ -203,7 +202,7 @@ static void MX_TIM7_Init(void) {
   htim7.Instance = TIM7;
   htim7.Init.Prescaler = 41999;
   htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim7.Init.Period = 199;
+  htim7.Init.Period = 24;
   htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim7) != HAL_OK) {
     Error_Handler();
@@ -228,15 +227,19 @@ static void MX_GPIO_Init(void) {
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOE_CLK_ENABLE();
 }
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
   if (htim == &htim7) {
-    uint8_t keycodes[6];
+    uint8_t keycodes[6] = {0};
     scan_keymatrix();
     uint8_t nread = read_keypad(6, keycodes);
-    i2c_write_bytes(SCREEN_PERIPH_ADDR, keycodes, nread);
+    if (nread > 0) {
+      i2c_write_bytes(SCREEN_PERIPH_ADDR, keycodes, nread);
+    }
   }
 }
 /* USER CODE END 4 */

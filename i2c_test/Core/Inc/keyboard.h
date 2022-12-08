@@ -9,8 +9,6 @@
 #define KEYBOARD_COL_STATE_LEN 4
 #define KEYBOARD_DEBOUNCE_CYCLE 2
 
-extern uint8_t col_state[KEYBOARD_NCOLS][KEYBOARD_COL_STATE_LEN];
-
 void init_keypad(void);
 
 void scan_keymatrix(void);
