@@ -5,6 +5,7 @@ void init_i2c(void) {
   GPIOB->MODER |= 1 << (2 * 6) | 1 << (2 * 7);   // Setting PB6,7 to Output
   GPIOB->OTYPER |= 1 << 6 | 1 << 7;              // Open Drain
   GPIOB->OSPEEDR |= 3 << (2 * 6) | 3 << (2 * 7); // Very High Speed
+  SCL_OFF;
 }
 
 void dly(int delay) {
@@ -33,6 +34,8 @@ void i2c_stop() {
   dly(I2C_DELAY);
 }
 
+#define I2C_MAX_DELAY 10000
+
 uint32_t i2c_write(uint8_t dat) {
 
   for (uint8_t i = 8; i; i--) {
@@ -48,18 +51,33 @@ uint32_t i2c_write(uint8_t dat) {
   SCL_ON;
   dly(I2C_DELAY);
   // TODO Check properly, for now just punt to someone else
-  uint32_t ack = ~SDA_READ; // Acknowledge bit
+  uint32_t count = 0;
+  while (SDA_READ) {
+    count += 1;
+    if (count > I2C_MAX_DELAY) {
+      goto cleanup;
+    }
+  }
+  cleanup:
   SCL_OFF;
-  return ack;
+  return count > I2C_MAX_DELAY;
 }
 
 uint8_t i2c_write_bytes(uint8_t addr, uint8_t *data, uint32_t size) {
   i2c_start();
-  i2c_write(addr << 1);
   uint8_t ack = 0;
+
+  ack |= i2c_write(addr << 1);
+  if (ack) {
+    return ack;
+  }
   for (uint32_t i = 0; i < size; i++) {
     ack |= i2c_write(data[i]);
+    if (ack) {
+      goto cleanup;
+    }
   }
+  cleanup:
   i2c_stop();
   return ack;
 }

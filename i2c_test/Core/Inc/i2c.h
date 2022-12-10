@@ -12,12 +12,12 @@ extern "C" {
 #define I2C_DELAY 420
 #define PI2C_SCL 6
 #define PI2C_SDA 7
-#define OUT_REG GPIOB->ODR
+#define OUT_REG GPIOB->BSRR
 #define IN_REG GPIOB->IDR
-#define SDA_ON (OUT_REG |= (1<< PI2C_SDA))
-#define SDA_OFF (OUT_REG &= ~(1<< PI2C_SDA))
-#define SCL_ON (OUT_REG |= (1<< PI2C_SCL))
-#define SCL_OFF (OUT_REG &= ~(1<< PI2C_SCL))
+#define SDA_ON (OUT_REG = (1 << PI2C_SDA))
+#define SDA_OFF (OUT_REG = (1<< (16 + PI2C_SDA)))
+#define SCL_ON (OUT_REG = (1<< PI2C_SCL))
+#define SCL_OFF (OUT_REG = (1<< (16 + PI2C_SCL)))
 #define SDA_READ (IN_REG & (1<< PI2C_SDA))
 
 

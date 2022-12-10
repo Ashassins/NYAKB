@@ -238,7 +238,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
     scan_keymatrix();
     uint8_t nread = read_keypad(6, keycodes);
     if (nread > 0) {
-      i2c_write_bytes(SCREEN_PERIPH_ADDR, keycodes, nread);
+      uint8_t ack = i2c_write_bytes(SCREEN_PERIPH_ADDR , keycodes, 1);
     }
   }
 }

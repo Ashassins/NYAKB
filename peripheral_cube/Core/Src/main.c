@@ -97,16 +97,22 @@ int main(void) {
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  //MX_I2C1_Init();
-  //MX_SPI1_Init();
+  // MX_I2C1_Init();
+  // MX_SPI1_Init();
   MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
   initI2CPeripheral();
   LCD_Setup();
   LCD_Clear(RED);
-  char *str = "!dlroW, olleH";
-  LCD_DrawString(20, 20, BLACK, WHITE, str, 14, 0);
 
+  LCD_DrawString(20, 20, BLACK, WHITE, "PEC:  ", 12, 0);
+  LCD_DrawString(20, 40, BLACK, WHITE, "OVR:  ", 12, 0);
+  LCD_DrawString(20, 60, BLACK, WHITE, "ARLO: ", 12, 0);
+  LCD_DrawString(20, 80, BLACK, WHITE, "BERR: ", 12, 0);
+  LCD_DrawString(20, 100, BLACK, WHITE, "TIME: ", 12, 0);
+  LCD_DrawString(20, 120, BLACK, WHITE, "ADDR: ", 12, 0);
+  LCD_DrawString(20, 140, BLACK, WHITE, "RXNE: ", 12, 0);
+  LCD_DrawString(20, 160, BLACK, WHITE, "STOP: ", 12, 0);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -301,6 +307,7 @@ static void MX_GPIO_Init(void) {
 /* USER CODE BEGIN 4 */
 void initI2CPeripheral(void) {
   RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+
   GPIOB->MODER &= ~((3 << (2 * 6)) | (3 << (2 * 7)));
   GPIOB->MODER |= (2 << (2 * 6)) | (2 << (2 * 7));
   GPIOB->AFR[0] &= ~((0xf << (4 * 6)) | (0xf << (4 * 7)));
@@ -312,10 +319,10 @@ void initI2CPeripheral(void) {
   // disable,Enable clock stretching
   /* (4) Enable own address 1 */
   I2C1->CR1 = 0;
-  I2C1->TIMINGR = (uint32_t)0x00B00000;    /* (1) */
-  I2C1->CR1 = I2C_CR1_PE | I2C_CR1_ADDRIE; /* (2) */
-  I2C1->OAR1 |= (uint32_t)(0x5a << 1);     /* (3) */
-  I2C1->OAR1 |= I2C_OAR1_OA1EN;            /* (4) */
+  I2C1->TIMINGR = (uint32_t)0x00B00000;                    /* (1) */
+  I2C1->CR1 = I2C_CR1_PE | I2C_CR1_ADDRIE | I2C_CR1_ERRIE; /* (2) */
+  I2C1->OAR1 |= (uint32_t)(0x5a << 1);                     /* (3) */
+  I2C1->OAR1 |= I2C_OAR1_OA1EN;                            /* (4) */
 
   NVIC_EnableIRQ((IRQn_Type)I2C1_IRQn);
   NVIC_SetPriority((IRQn_Type)I2C1_IRQn, 2);
@@ -329,18 +336,67 @@ void I2C1_IRQHandler(void) {
       I2C1->CR1 |= I2C_CR1_TXIE;
     }
   }
-  if ((isr_stat & I2C_ISR_RXNE) == I2C_ISR_RXNE) {
-    I2C1->ICR |= I2C_ICR_ADDRCF;
+  if (isr_stat & I2C_ISR_PECERR) {
+    LCD_DrawString(50, 20, BLACK, WHITE, "X", 12, 0);
+  } else {
+    LCD_DrawString(50, 20, BLACK, WHITE, "0", 12, 0);
+  }
+
+  if (isr_stat & I2C_ISR_OVR) {
+    LCD_DrawString(50, 40, BLACK, WHITE, "X", 12, 0);
+  } else {
+    LCD_DrawString(50, 40, BLACK, WHITE, "0", 12, 0);
+  }
+
+  if (isr_stat & I2C_ISR_ARLO) {
+    LCD_DrawString(50, 60, BLACK, WHITE, "X", 12, 0);
+  } else {
+    LCD_DrawString(50, 60, BLACK, WHITE, "0", 12, 0);
+  }
+  if (isr_stat & I2C_ISR_BERR) {
+    LCD_DrawString(50, 80, BLACK, WHITE, "X", 12, 0);
+  } else {
+    LCD_DrawString(50, 80, BLACK, WHITE, "0", 12, 0);
+  }
+
+  if (isr_stat & I2C_ISR_TIMEOUT) {
+    LCD_DrawString(50, 100, BLACK, WHITE, "X", 12, 0);
+  } else {
+    LCD_DrawString(50, 100, BLACK, WHITE, "0", 12, 0);
+  }
+
+  if (isr_stat & I2C_ISR_ADDR) {
+    LCD_DrawString(50, 120, BLACK, WHITE, "X", 12, 0);
+  } else {
+    LCD_DrawString(50, 120, BLACK, WHITE, "0", 12, 0);
+  }
+
+  if (isr_stat & I2C_ISR_RXNE) {
+    LCD_DrawString(50, 140, BLACK, WHITE, "X", 12, 0);
+  } else {
+    LCD_DrawString(50, 140, BLACK, WHITE, "0", 12, 0);
+  }
+
+  if (isr_stat & I2C_FLAG_STOPF) {
+    LCD_DrawString(50, 160, BLACK, WHITE, "X", 12, 0);
+  } else {
+    LCD_DrawString(50, 160, BLACK, WHITE, "0", 12, 0);
+  }
+  if (isr_stat & I2C_ISR_RXNE) {
     uint32_t data = I2C1->RXDR;
     uint8_t decoded_char = keymap_decode((enum hid_keyboard_keypad_usage)data);
-    char *str = "LLUN :TNES DRAOBYEK";
-    if (decoded_char != 0) {
-      str[0] = ' ';
-      str[1] = '\'';
-      str[2] = decoded_char;
-      str[3] = '\'';
+    char *str = "KEYBOARD SENT: ";
+    LCD_DrawString(20, 200, BLACK, WHITE, str, 12, 0);
+    if (decoded_char) {
+      LCD_DrawChar(110, 200, BLACK, WHITE, decoded_char, 12, 0);
     }
-    LCD_DrawString(20, 20, BLACK, WHITE, str, 20, 0);
+    I2C1->CR1 &= ~I2C_CR1_PE;
+    while (I2C1->CR1 & I2C_CR1_PE) {
+    }
+    I2C1->CR1 |= I2C_CR1_PE;
+  }
+  if (isr_stat & I2C_ISR_STOPF) {
+    I2C1->ICR |= I2C_ICR_STOPCF;
   }
 }
 /* USER CODE END 4 */
