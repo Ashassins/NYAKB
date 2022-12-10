@@ -175,61 +175,6 @@ enum hid_keyboard_keypad_usage {
     KC_CRSEL,
     KC_EXSEL,
 
-#if 0
-  // ***************************************************************
-  // These keycodes are present in the HID spec, but are           *
-  // nonfunctional on modern OSes. QMK uses this range (0xA5-0xDF) *
-  // for the media and function keys instead - see below.          *
-  // ***************************************************************
-
-  KC_KP_00                = 0xB0,
-  KC_KP_000,
-  KC_THOUSANDS_SEPARATOR,
-  KC_DECIMAL_SEPARATOR,
-  KC_CURRENCY_UNIT,
-  KC_CURRENCY_SUB_UNIT,
-  KC_KP_LEFT_PARENTHESIS,
-  KC_KP_RIGHT_PARENTHESIS,
-  KC_KP_LEFT_BRACE,
-  KC_KP_RIGHT_BRACE,
-  KC_KP_TAB,
-  KC_KP_BACKSPACE,
-  KC_KP_A,
-  KC_KP_B,
-  KC_KP_C,
-  KC_KP_D,
-  KC_KP_E,                //0xC0
-  KC_KP_F,
-  KC_KP_XOR,
-  KC_KP_HAT,
-  KC_KP_PERCENT,
-  KC_KP_LESS_THAN,
-  KC_KP_GREATER_THAN,
-  KC_KP_AND,
-  KC_KP_LAZY_AND,
-  KC_KP_OR,
-  KC_KP_LAZY_OR,
-  KC_KP_COLON,
-  KC_KP_HASH,
-  KC_KP_SPACE,
-  KC_KP_AT,
-  KC_KP_EXCLAMATION,
-  KC_KP_MEM_STORE,        //0xD0
-  KC_KP_MEM_RECALL,
-  KC_KP_MEM_CLEAR,
-  KC_KP_MEM_ADD,
-  KC_KP_MEM_SUB,
-  KC_KP_MEM_MUL,
-  KC_KP_MEM_DIV,
-  KC_KP_PLUS_MINUS,
-  KC_KP_CLEAR,
-  KC_KP_CLEAR_ENTRY,
-  KC_KP_BINARY,
-  KC_KP_OCTAL,
-  KC_KP_DECIMAL,
-  KC_KP_HEXADECIMAL,
-#endif
-
     /* Modifiers */
     KC_LEFT_CTRL = 0xE0,
     KC_LEFT_SHIFT,
@@ -246,12 +191,7 @@ enum internal_keyboard_vals  {
 };
 
 enum mouse_keys {
-/* Mouse Buttons */
-#ifdef VIA_ENABLE
-    KC_MS_UP = 0xF0,
-#else
     KC_MS_UP = 0xED,
-#endif
     KC_MS_DOWN,
     KC_MS_LEFT,
     KC_MS_RIGHT, // 0xF0
@@ -260,15 +200,9 @@ enum mouse_keys {
     KC_MS_BTN3,
     KC_MS_BTN4,
     KC_MS_BTN5,
-#ifdef VIA_ENABLE
-    KC_MS_BTN6 = KC_MS_BTN5,
-    KC_MS_BTN7 = KC_MS_BTN5,
-    KC_MS_BTN8 = KC_MS_BTN5,
-#else
     KC_MS_BTN6,
     KC_MS_BTN7,
     KC_MS_BTN8,
-#endif
 
     /* Mouse Wheel */
     KC_MS_WH_UP,
