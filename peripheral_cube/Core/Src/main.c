@@ -320,7 +320,7 @@ void initI2CPeripheral(void) {
   /* (4) Enable own address 1 */
   I2C1->CR1 = 0;
   I2C1->TIMINGR = (uint32_t)0x00B00000;                    /* (1) */
-  I2C1->CR1 = I2C_CR1_PE | I2C_CR1_ADDRIE | I2C_CR1_ERRIE; /* (2) */
+  I2C1->CR1 = I2C_CR1_PE | I2C_CR1_ADDRIE | I2C_CR1_RXIE | I2C_CR1_ERRIE; /* (2) */
   I2C1->OAR1 |= (uint32_t)(0x5a << 1);                     /* (3) */
   I2C1->OAR1 |= I2C_OAR1_OA1EN;                            /* (4) */
 
@@ -390,10 +390,7 @@ void I2C1_IRQHandler(void) {
     if (decoded_char) {
       LCD_DrawChar(110, 200, BLACK, WHITE, decoded_char, 12, 0);
     }
-    I2C1->CR1 &= ~I2C_CR1_PE;
-    while (I2C1->CR1 & I2C_CR1_PE) {
-    }
-    I2C1->CR1 |= I2C_CR1_PE;
+    
   }
   if (isr_stat & I2C_ISR_STOPF) {
     I2C1->ICR |= I2C_ICR_STOPCF;
