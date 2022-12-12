@@ -35,6 +35,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+uint32_t action_count = 0;
+uint32_t apm = 0;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -101,20 +103,15 @@ int main(void) {
   // MX_SPI1_Init();
   MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
-  initI2CPeripheral();
+
   LCD_Setup();
-  LCD_Clear(RED);
+  LCD_Clear(WHITE);
+  initI2CPeripheral();
+  LCD_DrawString(20, 20, BLACK, WHITE, "Actions Per Minute: ", 16, 0);
+  LCD_DrawString(20, 200, BLACK, WHITE, "KEYBOARD SENT: ", 16,
+                 0); /* USER CODE END 2 */
 
-  LCD_DrawString(20, 20, BLACK, WHITE, "PEC:  ", 12, 0);
-  LCD_DrawString(20, 40, BLACK, WHITE, "OVR:  ", 12, 0);
-  LCD_DrawString(20, 60, BLACK, WHITE, "ARLO: ", 12, 0);
-  LCD_DrawString(20, 80, BLACK, WHITE, "BERR: ", 12, 0);
-  LCD_DrawString(20, 100, BLACK, WHITE, "TIME: ", 12, 0);
-  LCD_DrawString(20, 120, BLACK, WHITE, "ADDR: ", 12, 0);
-  LCD_DrawString(20, 140, BLACK, WHITE, "RXNE: ", 12, 0);
-  LCD_DrawString(20, 160, BLACK, WHITE, "STOP: ", 12, 0);
-  /* USER CODE END 2 */
-
+  HAL_TIM_Base_Start_IT(&htim7);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1) {
@@ -263,9 +260,9 @@ static void MX_TIM7_Init(void) {
 
   /* USER CODE END TIM7_Init 1 */
   htim7.Instance = TIM7;
-  htim7.Init.Prescaler = 0;
+  htim7.Init.Prescaler = 47999;
   htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim7.Init.Period = 65535;
+  htim7.Init.Period = 999;
   htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim7) != HAL_OK) {
     Error_Handler();
@@ -319,10 +316,11 @@ void initI2CPeripheral(void) {
   // disable,Enable clock stretching
   /* (4) Enable own address 1 */
   I2C1->CR1 = 0;
-  I2C1->TIMINGR = (uint32_t)0x00B00000;                    /* (1) */
-  I2C1->CR1 = I2C_CR1_PE | I2C_CR1_ADDRIE | I2C_CR1_RXIE | I2C_CR1_ERRIE; /* (2) */
-  I2C1->OAR1 |= (uint32_t)(0x5a << 1);                     /* (3) */
-  I2C1->OAR1 |= I2C_OAR1_OA1EN;                            /* (4) */
+  I2C1->TIMINGR = (uint32_t)0x00B00000; /* (1) */
+  I2C1->CR1 =
+      I2C_CR1_PE | I2C_CR1_ADDRIE | I2C_CR1_RXIE | I2C_CR1_ERRIE; /* (2) */
+  I2C1->OAR1 |= (uint32_t)(0x5a << 1);                            /* (3) */
+  I2C1->OAR1 |= I2C_OAR1_OA1EN;                                   /* (4) */
 
   NVIC_EnableIRQ((IRQn_Type)I2C1_IRQn);
   NVIC_SetPriority((IRQn_Type)I2C1_IRQn, 2);
@@ -336,66 +334,45 @@ void I2C1_IRQHandler(void) {
       I2C1->CR1 |= I2C_CR1_TXIE;
     }
   }
-  if (isr_stat & I2C_ISR_PECERR) {
-    LCD_DrawString(50, 20, BLACK, WHITE, "X", 12, 0);
-  } else {
-    LCD_DrawString(50, 20, BLACK, WHITE, "0", 12, 0);
-  }
 
-  if (isr_stat & I2C_ISR_OVR) {
-    LCD_DrawString(50, 40, BLACK, WHITE, "X", 12, 0);
-  } else {
-    LCD_DrawString(50, 40, BLACK, WHITE, "0", 12, 0);
-  }
-
-  if (isr_stat & I2C_ISR_ARLO) {
-    LCD_DrawString(50, 60, BLACK, WHITE, "X", 12, 0);
-  } else {
-    LCD_DrawString(50, 60, BLACK, WHITE, "0", 12, 0);
-  }
-  if (isr_stat & I2C_ISR_BERR) {
-    LCD_DrawString(50, 80, BLACK, WHITE, "X", 12, 0);
-  } else {
-    LCD_DrawString(50, 80, BLACK, WHITE, "0", 12, 0);
-  }
-
-  if (isr_stat & I2C_ISR_TIMEOUT) {
-    LCD_DrawString(50, 100, BLACK, WHITE, "X", 12, 0);
-  } else {
-    LCD_DrawString(50, 100, BLACK, WHITE, "0", 12, 0);
-  }
-
-  if (isr_stat & I2C_ISR_ADDR) {
-    LCD_DrawString(50, 120, BLACK, WHITE, "X", 12, 0);
-  } else {
-    LCD_DrawString(50, 120, BLACK, WHITE, "0", 12, 0);
-  }
-
-  if (isr_stat & I2C_ISR_RXNE) {
-    LCD_DrawString(50, 140, BLACK, WHITE, "X", 12, 0);
-  } else {
-    LCD_DrawString(50, 140, BLACK, WHITE, "0", 12, 0);
-  }
-
-  if (isr_stat & I2C_FLAG_STOPF) {
-    LCD_DrawString(50, 160, BLACK, WHITE, "X", 12, 0);
-  } else {
-    LCD_DrawString(50, 160, BLACK, WHITE, "0", 12, 0);
-  }
   if (isr_stat & I2C_ISR_RXNE) {
     uint32_t data = I2C1->RXDR;
     uint8_t decoded_char = keymap_decode((enum hid_keyboard_keypad_usage)data);
-    char *str = "KEYBOARD SENT: ";
-    LCD_DrawString(20, 200, BLACK, WHITE, str, 12, 0);
-    if (decoded_char) {
-      LCD_DrawChar(110, 200, BLACK, WHITE, decoded_char, 12, 0);
+    if (decoded_char >= 'a' && decoded_char <= 'z') {
+      decoded_char -= 'a' - 'A';
     }
-    
+
+    if (decoded_char) {
+      LCD_DrawChar(140, 200, BLACK, WHITE, decoded_char, 16, 0);
+    }
+    action_count += 1;
   }
   if (isr_stat & I2C_ISR_STOPF) {
     I2C1->ICR |= I2C_ICR_STOPCF;
   }
 }
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+  if (htim == &htim7) {
+    // Compute running average of actions per minute 
+    apm += action_count * 6;
+    apm >>= 1;
+    action_count = 0;
+    
+    uint32_t tmp = apm;
+    uint32_t magic_string[2] = {0};
+    for (int i = 0; i < 4; i++) {
+      magic_string[0] <<= 8;
+      magic_string[0] += (tmp % 10) + '0';
+      tmp /= 10;
+      if (tmp == 0) {
+        break;
+      }
+    }
+    LCD_DrawString(180, 20, BLACK, WHITE, (char *)&magic_string, 16, 0);
+  }
+}
+
 /* USER CODE END 4 */
 
 /**

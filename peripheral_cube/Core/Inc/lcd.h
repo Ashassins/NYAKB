@@ -11,18 +11,17 @@ typedef uint16_t u16;
 
 // The LCD device structure definition.
 //
-typedef struct
-{
-    u16 width;
-    u16 height;
-    u16 id;
-    u8  dir;
-    u16  wramcmd;
-    u16  setxcmd;
-    u16  setycmd;
-    void (*reset)(int);
-    void (*select)(int);
-    void (*reg_select)(int);
+typedef struct {
+  u16 width;
+  u16 height;
+  u16 id;
+  u8 dir;
+  u16 wramcmd;
+  u16 setxcmd;
+  u16 setycmd;
+  void (*reset)(int);
+  void (*select)(int);
+  void (*reg_select)(int);
 } lcd_dev_t;
 
 // The LCD device.
@@ -33,61 +32,66 @@ typedef struct
 extern lcd_dev_t lcddev;
 
 /****************** Bit definition for GPIO_AFRL register  ********************/
-#define GPIO_AFRL_AFR0            ((uint32_t)0x0000000F)
-#define GPIO_AFRL_AFR1            ((uint32_t)0x000000F0)
-#define GPIO_AFRL_AFR2            ((uint32_t)0x00000F00)
-#define GPIO_AFRL_AFR3            ((uint32_t)0x0000F000)
-#define GPIO_AFRL_AFR4            ((uint32_t)0x000F0000)
-#define GPIO_AFRL_AFR5            ((uint32_t)0x00F00000)
-#define GPIO_AFRL_AFR6            ((uint32_t)0x0F000000)
-#define GPIO_AFRL_AFR7            ((uint32_t)0xF0000000)
+#define GPIO_AFRL_AFR0 ((uint32_t)0x0000000F)
+#define GPIO_AFRL_AFR1 ((uint32_t)0x000000F0)
+#define GPIO_AFRL_AFR2 ((uint32_t)0x00000F00)
+#define GPIO_AFRL_AFR3 ((uint32_t)0x0000F000)
+#define GPIO_AFRL_AFR4 ((uint32_t)0x000F0000)
+#define GPIO_AFRL_AFR5 ((uint32_t)0x00F00000)
+#define GPIO_AFRL_AFR6 ((uint32_t)0x0F000000)
+#define GPIO_AFRL_AFR7 ((uint32_t)0xF0000000)
 
 // Rotation:
 // 0: rotate 0
 // 1: rotate: 90
 // 2: rotate: 180
 // 3: rotate 270
-#define USE_HORIZONTAL       0
+#define USE_HORIZONTAL 0
 
 // The dimensions of the display.
 #define LCD_W 240
 #define LCD_H 320
 
 // Some popular colors
-#define WHITE       0xFFFF
-#define BLACK       0x0000
-#define BLUE        0x001F
-#define YELLOW      0XFFE0
-#define GBLUE       0X07FF
-#define RED         0xF800
-#define MAGENTA     0xF81F
-#define GREEN       0x07E0
-#define CYAN        0x7FFF
-#define BROWN       0XBC40
-#define BRRED       0XFC07
-#define GRAY        0X8430
-#define DARKBLUE    0X01CF
-#define LIGHTBLUE   0X7D7C
-#define GRAYBLUE    0X5458
-#define LIGHTGREEN  0X841F
-#define LIGHTGRAY   0XEF5B
-#define LGRAY       0XC618
-#define LGRAYBLUE   0XA651
-#define LBBLUE      0X2B12
+#define WHITE 0xFFFF
+#define BLACK 0x0000
+#define BLUE 0x001F
+#define YELLOW 0XFFE0
+#define GBLUE 0X07FF
+#define RED 0xF800
+#define MAGENTA 0xF81F
+#define GREEN 0x07E0
+#define CYAN 0x7FFF
+#define BROWN 0XBC40
+#define BRRED 0XFC07
+#define GRAY 0X8430
+#define DARKBLUE 0X01CF
+#define LIGHTBLUE 0X7D7C
+#define GRAYBLUE 0X5458
+#define LIGHTGREEN 0X841F
+#define LIGHTGRAY 0XEF5B
+#define LGRAY 0XC618
+#define LGRAYBLUE 0XA651
+#define LBBLUE 0X2B12
 
 void LCD_Setup(void);
 void LCD_Init(void (*reset)(int), void (*select)(int), void (*reg_select)(int));
 void LCD_Clear(u16 Color);
-void LCD_DrawPoint(u16 x,u16 y,u16 c);
+void LCD_DrawPoint(u16 x, u16 y, u16 c);
 void LCD_DrawLine(u16 x1, u16 y1, u16 x2, u16 y2, u16 c);
 void LCD_DrawRectangle(u16 x1, u16 y1, u16 x2, u16 y2, u16 c);
 void LCD_DrawFillRectangle(u16 x1, u16 y1, u16 x2, u16 y2, u16 c);
 void LCD_Circle(u16 xc, u16 yc, u16 r, u16 fill, u16 c);
-void LCD_DrawTriangle(u16 x0,u16 y0, u16 x1,u16 y1, u16 x2,u16 y2, u16 c);
-void LCD_DrawFillTriangle(u16 x0,u16 y0, u16 x1,u16 y1, u16 x2,u16 y2, u16 c);
-void LCD_DrawChar(u16 x,u16 y,u16 fc, u16 bc, char num, u8 size, u8 mode);
-void LCD_DrawString(u16 x,u16 y, u16 fc, u16 bg, const char *p, u8 size, u8 mode);
-void LCD_SetWindow(uint16_t xStart, uint16_t yStart, uint16_t xEnd, uint16_t yEnd);
+void LCD_DrawTriangle(u16 x0, u16 y0, u16 x1, u16 y1, u16 x2, u16 y2, u16 c);
+void LCD_DrawFillTriangle(u16 x0, u16 y0, u16 x1, u16 y1, u16 x2, u16 y2,
+                          u16 c);
+void LCD_DrawChar(u16 x, u16 y, u16 fc, u16 bc, char num, u8 size, u8 mode);
+void LCD_DrawString(u16 x, u16 y, u16 fc, u16 bg, const char *p, u8 size,
+                    u8 mode);
+void LCD_DrawSizedString(u16 x, u16 y, u16 fc, u16 bg, u16 len, const char *p, u8 size,
+                         u8 mode);
+void LCD_SetWindow(uint16_t xStart, uint16_t yStart, uint16_t xEnd,
+                   uint16_t yEnd);
 void LCD_WriteData16_Prepare();
 void LCD_WriteData16_End();
 void LCD_WriteData16(u16 data);
@@ -95,10 +99,10 @@ void LCD_WriteData16(u16 data);
 // C Picture data structure.
 //===========================================================================
 typedef const struct {
-    unsigned int   width;
-    unsigned int   height;
-    unsigned int   bytes_per_pixel; // 2:RGB16, 3:RGB, 4:RGBA
-    unsigned char  pixel_data[0]; // variable length array
+  unsigned int width;
+  unsigned int height;
+  unsigned int bytes_per_pixel; // 2:RGB16, 3:RGB, 4:RGBA
+  unsigned char pixel_data[0];  // variable length array
 } Picture;
 
 void LCD_DrawPicture(u16 x0, u16 y0, const Picture *pic);

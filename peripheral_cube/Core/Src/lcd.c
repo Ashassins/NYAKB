@@ -1076,6 +1076,16 @@ void LCD_DrawString(u16 x, u16 y, u16 fc, u16 bg, const char *p, u8 size, u8 mod
   lcddev.select(0);
 }
 
+void LCD_DrawSizedString(u16 x, u16 y, u16 fc, u16 bg, u16 len, const char *p, u8 size, u8 mode) {
+ lcddev.select(1);
+ for(int i = 0; i < size; i++) {
+  _LCD_DrawChar(x, y, fc, bg, *p, size, mode);
+  x += size /2 ;
+  p++;
+ } 
+}
+
+
 //===========================================================================
 // Draw a picture with upper left corner at (x0,y0).
 //===========================================================================
